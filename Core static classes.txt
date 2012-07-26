@@ -1,0 +1,13 @@
+Core static classes: - Content  : - textures
+				  - sounds
+				  - sprite fonts
+				  - etc..
+		     - Handlers : - input handler
+				  - event handler
+				  - etc..
+		     - Database : - spells
+				  - items
+				  - enemies
+				  - npcs
+				  - etc..
+		     - Player   : - player stuff..
