@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheDayAfter_XNA_Project", "TheDayAfter_XNA_Project\TheDayAfter_XNA_Project\TheDayAfter_XNA_Project.csproj", "{ACAD7968-F99D-4AA3-A859-ED35DE0F1121}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "TheDayAfter_XNA_ProjectContent", "TheDayAfter_XNA_Project\TheDayAfter_XNA_ProjectContent\TheDayAfter_XNA_ProjectContent.contentproj", "{ABBB0A61-05D7-4495-B0E4-01D2D943133B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ACAD7968-F99D-4AA3-A859-ED35DE0F1121}.Debug|x86.ActiveCfg = Debug|x86
+		{ACAD7968-F99D-4AA3-A859-ED35DE0F1121}.Debug|x86.Build.0 = Debug|x86
+		{ACAD7968-F99D-4AA3-A859-ED35DE0F1121}.Release|x86.ActiveCfg = Release|x86
+		{ACAD7968-F99D-4AA3-A859-ED35DE0F1121}.Release|x86.Build.0 = Release|x86
+		{ABBB0A61-05D7-4495-B0E4-01D2D943133B}.Debug|x86.ActiveCfg = Debug|x86
+		{ABBB0A61-05D7-4495-B0E4-01D2D943133B}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
