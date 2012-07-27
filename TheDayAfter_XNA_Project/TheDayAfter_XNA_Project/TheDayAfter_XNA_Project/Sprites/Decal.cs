@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TheDayAfter_XNA_Project
+namespace TheDayAfter_XNA_Project.Sprites
 {
-    class Spell
+    class Decal
     {
-        string name;
     }
 }

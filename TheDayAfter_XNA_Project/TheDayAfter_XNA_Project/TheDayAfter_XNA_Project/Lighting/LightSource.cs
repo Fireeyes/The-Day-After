@@ -11,11 +11,9 @@ using System.Security.Permissions;
 using System.Reflection;
 using System.Collections;
 
-namespace TheDayAfter_XNA_Project.Sprites
+namespace TheDayAfter_XNA_Project.Lighting
 {
-    class TileMap
+    class LightSource
     {
-        Color AmbientLight;
-
     }
 }

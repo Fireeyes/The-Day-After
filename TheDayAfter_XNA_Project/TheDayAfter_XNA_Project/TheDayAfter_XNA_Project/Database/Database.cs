@@ -12,7 +12,7 @@ using System.Reflection;
 using System.Collections;
 using TheDayAfter_XNA_Project.Sprites;
 
-namespace TheDayAfter_XNA_Project
+namespace TheDayAfter_XNA_Project.Database
 {
     static class Database
     {
