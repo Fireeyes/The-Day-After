@@ -3,5 +3,5 @@
 Core team is made of:
 Daniel Stanciu - Taikand
 Cristian Neagu - Fireeyes
-George Popa    - Qsilver
+George Popa    - QSilver
 Dumitru Barbu  - Spesmerin
