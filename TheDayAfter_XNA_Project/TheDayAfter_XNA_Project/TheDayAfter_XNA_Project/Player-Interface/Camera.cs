@@ -48,7 +48,7 @@ namespace TheDayAfter_XNA_Project
 
         internal static void Update()
         {
-            /*
+            
             float heroX = MathHelper.Clamp(
                Player.sprite.Position.X, 100 + Player.sprite.DrawOffset.X, WorldWidth);
             float heroY = MathHelper.Clamp(
@@ -76,7 +76,7 @@ namespace TheDayAfter_XNA_Project
             {
                 Move(new Vector2(0, testPosition.Y - (ViewHeight - 100)));
             }
-            */
+            
         }
     }
 }

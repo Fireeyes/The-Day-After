@@ -12,7 +12,7 @@ namespace TheDayAfter_XNA_Project
         // Inventory[itemToBeEquipped.slot]=itemToBeEquipped;                   <---- EXEMPLU
         // public static Item Headpiece = new Item(ItemSlots.head, "Helmet");   <---- EXEMPLU
 
-        SpriteAnimation sprite;
+        public static SpriteAnimation sprite;
 
     }
 }
