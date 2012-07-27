@@ -8,9 +8,11 @@ namespace TheDayAfter_XNA_Project
 {
     static class Player
     {
-        public static Dictionary<ItemSlots, Item> Inventory = new Dictionary<ItemSlots, Item>();
+        public static Dictionary<ItemSlots, Item> inventory = new Dictionary<ItemSlots, Item>();
         // Inventory[itemToBeEquipped.slot]=itemToBeEquipped;                   <---- EXEMPLU
         // public static Item Headpiece = new Item(ItemSlots.head, "Helmet");   <---- EXEMPLU
+
+        SpriteAnimation sprite;
 
     }
 }
