@@ -119,7 +119,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Sprites\FrameAnimation.cs" />
-    <Compile Include="Sprites\MobileSprite.cs" />
     <Compile Include="Sprites\SpriteAnimation.cs" />
   </ItemGroup>
   <ItemGroup>
