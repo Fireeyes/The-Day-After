@@ -368,8 +368,6 @@ namespace TheDayAfter_XNA_Project
                             SpriteEffects.None,
                             0.0f);
             spriteBatch.End();
-            // TODO: Add your drawing code here
-
             base.Draw(gameTime);
         }
     }
