@@ -6,7 +6,7 @@ using System.Text;
 
 namespace TheDayAfter_XNA_Project.Database
 {
-    class Spell
+    class Skill
     {
         string name;
     }

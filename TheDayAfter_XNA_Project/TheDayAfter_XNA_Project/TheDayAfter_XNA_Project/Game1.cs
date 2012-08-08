@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-
+using TheDayAfter_XNA_Project.Player_Interface;
 namespace TheDayAfter_XNA_Project
 {
     /// <summary>
@@ -18,7 +18,8 @@ namespace TheDayAfter_XNA_Project
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        InputHandler Input=new InputHandler();
+        #region ChaosGlobal
         SpriteFont pericles6;
 
         TileMap myMap;
@@ -31,6 +32,7 @@ namespace TheDayAfter_XNA_Project
         Texture2D hilight;
 
         SpriteAnimation vlad;
+        #endregion
 
         public Game1()
         {
@@ -51,15 +53,12 @@ namespace TheDayAfter_XNA_Project
             base.Initialize();
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
+       
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            #region ChaosLoad
             myMap = new TileMap(
                            Content.Load<Texture2D>(@"Textures\Tilesets\mousemap"),
                            Content.Load<Texture2D>(@"Textures\Tilesets\slopemaps"));
@@ -101,8 +100,8 @@ namespace TheDayAfter_XNA_Project
             Player.sprite.DrawOffset = new Vector2(-24, -38);
             Player.sprite.CurrentAnimation = "IdleWest";
             Player.sprite.IsAnimating = true;
+            #endregion
 
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -124,7 +123,7 @@ namespace TheDayAfter_XNA_Project
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-
+            #region ChaosUpdate
             Vector2 moveVector = Vector2.Zero;
             Vector2 moveDir = Vector2.Zero;
             string animation = "";
@@ -242,6 +241,7 @@ namespace TheDayAfter_XNA_Project
             }
 
             Player.sprite.Update(gameTime);
+            #endregion
 
             base.Update(gameTime);
         }
@@ -253,7 +253,7 @@ namespace TheDayAfter_XNA_Project
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-
+            #region ChaosDraw
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
 
             Vector2 firstSquare = new Vector2(Camera.Location.X / Tile.TileStepX, Camera.Location.Y / Tile.TileStepY);
@@ -367,6 +367,7 @@ namespace TheDayAfter_XNA_Project
                             1.0f,
                             SpriteEffects.None,
                             0.0f);
+            #endregion
             spriteBatch.End();
             base.Draw(gameTime);
         }

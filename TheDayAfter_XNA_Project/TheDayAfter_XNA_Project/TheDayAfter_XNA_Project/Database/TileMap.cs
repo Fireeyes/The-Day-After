@@ -36,17 +36,21 @@ namespace TheDayAfter_XNA_Project.Database
             for (x = 0; x <= MaxX; x++)
             {
                 List<Tile> currentY = new List<Tile>();
-                for (y = 0; y <= MaxY; y++)
+                for (y = 0; y <= MaxY; y++) //creting the vertical TileRow
+                    // structure X0-Y0  X1-Y0   X2-Y0
+                    //           X0-Y1  X1-Y1   X2-Y2
+                    //           X0-Y2  X1-Y2   X2-Y2
+                    //Generting the Y row first and then adding it to the X structure
                 {
                     currentY.Add(new Tile(
                        Convert.ToInt32(fileReader.ReadLine()), //Tile.Environment
                        Convert.ToInt32(fileReader.ReadLine())  //Tile.Id
                        ));
                 }
-                X.Add(new TileRow(currentY));
+                X.Add(new TileRow(currentY));   //Tabbing to a new X
             }
         }
-        void Draw(SpriteBatch spriteBatch)
+        void Draw(SpriteBatch spriteBatch)  //Doesn't do anything
         {
             foreach(TileRow row in X)
             {

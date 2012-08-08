@@ -17,7 +17,7 @@ namespace TheDayAfter_XNA_Project.Database
     static class Database
     {
         public static Dictionary<string, Item > ItemList  = new Dictionary<string,Item> ();
-        public static Dictionary<string, Spell> SpellList = new Dictionary<string,Spell>();
+        public static Dictionary<string, Skill> SpellList = new Dictionary<string,Skill>();
         public static Dictionary<string, TileMap> TileMapList= new Dictionary<string, TileMap>();
     }
 }
