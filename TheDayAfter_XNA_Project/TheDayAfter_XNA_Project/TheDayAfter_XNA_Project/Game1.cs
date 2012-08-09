@@ -19,6 +19,7 @@ namespace TheDayAfter_XNA_Project
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         InputHandler Input=new InputHandler();
+        Texture2D circle;
         #region ChaosGlobal
         SpriteFont pericles6;
 
@@ -58,6 +59,8 @@ namespace TheDayAfter_XNA_Project
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            pericles6 = Content.Load<SpriteFont>(@"Fonts\pericles");
+            circle = Content.Load<Texture2D>(@"Textures\circle");
             #region ChaosLoad
             myMap = new TileMap(
                            Content.Load<Texture2D>(@"Textures\Tilesets\mousemap"),
@@ -121,8 +124,9 @@ namespace TheDayAfter_XNA_Project
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            if (Input.IsKeyPressed(Keys.Escape) )
                 this.Exit();
+            Input.Update();
             #region ChaosUpdate
             Vector2 moveVector = Vector2.Zero;
             Vector2 moveDir = Vector2.Zero;
@@ -252,6 +256,18 @@ namespace TheDayAfter_XNA_Project
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            spriteBatch.Begin();
+            RenderTarget2D ShadowMap = new RenderTarget2D(GraphicsDevice, 
+                GraphicsDevice.PresentationParameters.BackBufferWidth,
+                GraphicsDevice.PresentationParameters.BackBufferHeight); 
+            GraphicsDevice.SetRenderTarget(ShadowMap);
+            GraphicsDevice.Clear(Color.Transparent);
+            spriteBatch.Draw( circle,
+                new Rectangle((int)Input.GetMousePos().X, (int)Input.GetMousePos().Y, 100, 100),
+                Color.Red
+                );
+            spriteBatch.End();
+            GraphicsDevice.SetRenderTarget(null);
             GraphicsDevice.Clear(Color.Black);
             #region ChaosDraw
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
@@ -368,6 +384,11 @@ namespace TheDayAfter_XNA_Project
                             SpriteEffects.None,
                             0.0f);
             #endregion
+            spriteBatch.Draw(ShadowMap, new Vector2(0,0), Color.Red*0.5f);
+            spriteBatch.DrawString(pericles6, Convert.ToString(Input.GetMousePos()),
+                new Vector2(10, 10), Color.Red);
+            spriteBatch.DrawString(pericles6, Convert.ToString(Mouse.GetState().X) + Convert.ToString(Mouse.GetState().Y),
+                new Vector2(10, 50), Color.Red);
             spriteBatch.End();
             base.Draw(gameTime);
         }

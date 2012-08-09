@@ -12,17 +12,14 @@ namespace TheDayAfter_XNA_Project.Player_Interface
     {
         MouseState Ms = Mouse.GetState();
         KeyboardState ks = Keyboard.GetState();
-        KeyboardState oldks = Keyboard.GetState(); 
+        KeyboardState oldks = Keyboard.GetState();
         int ScrollValue
         {
             get
             {
-                return Ms.ScrollWheelValue-ScrollValue;
+                return Ms.ScrollWheelValue - ScrollValue;
             }
-            set
-            {
-                ScrollValue = value;
-            }
+            set { }
         }
         public InputHandler()
         {
@@ -30,11 +27,11 @@ namespace TheDayAfter_XNA_Project.Player_Interface
             ks = Keyboard.GetState();
             oldks = Keyboard.GetState();
         }
-        Vector2 GetMousePos()
+        public Vector2 GetMousePos()
         {
             return new Vector2(Ms.X, Ms.Y);
         }
-        bool IsMouseRClick()    //returns True if Right Mouse Buttoned is pressed
+        public bool IsMouseRClick()    //returns True if Right Mouse Buttoned is pressed
         {
             if (Ms.LeftButton == ButtonState.Pressed)
             {
@@ -45,7 +42,7 @@ namespace TheDayAfter_XNA_Project.Player_Interface
                 return false;
             }
         }
-        bool IsMouseLClick()  //returns True if Left Mouse Buttoned is pressed
+        public bool IsMouseLClick()  //returns True if Left Mouse Buttoned is pressed
         {
             if (Ms.LeftButton == ButtonState.Pressed)
             {
@@ -56,14 +53,14 @@ namespace TheDayAfter_XNA_Project.Player_Interface
                 return false;
             }
         }
-        void Update()
+        public void Update()
         {
             ScrollValue = Ms.ScrollWheelValue;
             Ms = Mouse.GetState();
             oldks = ks;
             ks = Keyboard.GetState(); 
         }
-        bool IsKeyPressed(Keys key)
+        public bool IsKeyPressed(Keys key)
         {
             return ks.IsKeyDown(key);
         }
