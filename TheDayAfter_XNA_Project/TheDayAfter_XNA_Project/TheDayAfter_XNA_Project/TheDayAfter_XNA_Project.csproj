@@ -125,9 +125,6 @@
     <Compile Include="Sprites\FrameAnimation.cs" />
     <Compile Include="Sprites\SpriteAnimation.cs" />
     <Compile Include="Database\TileMap.cs" />
-    <Compile Include="World\MapCell.cs" />
-    <Compile Include="World\Tile.cs" />
-    <Compile Include="World\TileMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
