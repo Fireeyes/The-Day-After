@@ -116,6 +116,7 @@
     <Compile Include="Core\Enums.cs" />
     <Compile Include="Content\Item.cs" />
     <Compile Include="Core\EventHandler.cs" />
+    <Compile Include="Player-Interface\Camera.cs" />
     <Compile Include="Player-Interface\InputHandler.cs" />
     <Compile Include="Player-Interface\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
