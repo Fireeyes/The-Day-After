@@ -10,6 +10,7 @@ using System.Runtime.Serialization;
 using System.Security.Permissions;
 using System.Reflection;
 using System.Collections;
+using TheDayAfter_XNA_Project.Player_Interface;
 
 
 
@@ -96,7 +97,7 @@ namespace TheDayAfter_XNA_Project
             {   x=0;
                 foreach (Tile tile in row.Y)
                 {
-                    spriteBatch.Draw(texture,new Vector2(y*64,x*64),new Rectangle(tile.Id*64,0,64,64), Color.White);
+                    spriteBatch.Draw(texture,new Vector2(y*64,x*64)-Camera.position,new Rectangle(tile.Id*64,0,64,64), Color.White);
                     
                     x++;
                 }

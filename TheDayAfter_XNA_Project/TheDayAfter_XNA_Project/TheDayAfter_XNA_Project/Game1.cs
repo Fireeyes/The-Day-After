@@ -51,7 +51,7 @@ namespace TheDayAfter_XNA_Project
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             Player.texture = Content.Load<Texture2D>(@"Textures\DebugPlayer"); // !!!!!!!!!! TEMPORARY!!!!!!!!!
-            DebugMap.Load(Content.Load<Texture2D>(@"Data\World.wif\test.png"), Content.Load<Texture2D>(@"Textures\Tilesets\debugtileset"));
+            DebugMap.Load(Content.Load<Texture2D>(@"Textures\DebugTileMap"), Content.Load<Texture2D>(@"Textures\Tilesets\debugtileset"));
             Database.Load(Content);
             
         }

@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-using System.IO.Packaging;
+using System.IO.Compression;
 using System.Runtime.Serialization;
 using System.Security.Permissions;
 using System.Reflection;
@@ -24,18 +24,11 @@ namespace TheDayAfter_XNA_Project
         public static Dictionary<string, TileMap> TileMapList= new Dictionary<string, TileMap>();
          * end of crap*/
         public static Dictionary<string, SpriteFont> Fonts = new Dictionary<string, SpriteFont>();
-
-        public static Package World;
-
         public static void Load(ContentManager Content)
         {
-            //World = Package.Open("Data/World.wif");
             Fonts.Add("debug", Content.Load<SpriteFont>(@"Fonts\debug"));
 
         }
-        static void Test()
-        {
-            //PackagePart test=World.GetPart(PackUriHelper.ResolvePartUri("/test.png"));
-        }
+       
     }
 }
