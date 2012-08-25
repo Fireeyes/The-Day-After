@@ -57,4 +57,51 @@ namespace TheDayAfter_XNA_Project
     //        }
     //    }
     //}
+    public class TileMap
+    {
+        int MaxX = 32; //number of collumns
+        int MaxY = 32; //number of rows
+        List<TileRow> X = new List<TileRow>();
+        Texture2D texture;
+        public void Load(Texture2D pixelMap, Texture2D tilemap)
+        {
+            uint[] pixel = new uint[1];
+            for (int i = 0; i <= MaxX-1; i++)
+            {
+                List<Tile> currentY = new List<Tile>();
+                for (int j = 0; j <= MaxY-1; j++)
+                {
+
+                    pixelMap.GetData(0, new Rectangle(i, j, 1, 1), pixel, 0, 1);
+
+                    if (pixel[0] == 4278190080)     // BLACK
+                    {
+                        currentY.Add(new Tile(1,0));
+                    }
+                    else if (pixel[0] == 4278190335) // RED
+                    {
+                        currentY.Add(new Tile(1,1)); 
+                    }
+                }
+                X.Add(new TileRow(currentY));
+            }
+            texture = tilemap;
+        }
+
+        public void Draw(SpriteBatch spriteBatch)  //Doesn't do anything
+        {
+            int x = 0, y = 0;
+            
+            foreach(TileRow row in X)
+            {   x=0;
+                foreach (Tile tile in row.Y)
+                {
+                    spriteBatch.Draw(texture,new Vector2(y*64,x*64),new Rectangle(tile.Id*64,0,64,64), Color.White);
+                    
+                    x++;
+                }
+                y++;
+            }
+        }
+    }
 }

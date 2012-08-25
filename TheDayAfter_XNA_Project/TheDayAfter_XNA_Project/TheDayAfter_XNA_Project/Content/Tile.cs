@@ -17,15 +17,12 @@ namespace TheDayAfter_XNA_Project
     }
     class Tile
     {
-        int Environment;
-        int Id;
+        public int Environment;
+        public int Id;
         public Tile(int environment, int ID)
         {
             Environment = environment;
             Id = ID;
-        }
-        public void Draw(SpriteBatch spriteBatch)
-        {
         }
     }
 }

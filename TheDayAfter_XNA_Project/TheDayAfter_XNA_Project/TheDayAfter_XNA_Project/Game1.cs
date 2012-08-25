@@ -18,6 +18,7 @@ namespace TheDayAfter_XNA_Project
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        TileMap DebugMap = new TileMap();
         //InputHandler Input=new InputHandler(); Input handler should be static (o,O) 
                                               // i mean.. u dont need more than one, 
                                               // and u need to see it everywhere                      
@@ -25,6 +26,9 @@ namespace TheDayAfter_XNA_Project
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            this.IsMouseVisible = true;
+            graphics.PreferredBackBufferHeight = 640;
+            graphics.PreferredBackBufferWidth = 640;
         }
 
         /// <summary>
@@ -45,6 +49,9 @@ namespace TheDayAfter_XNA_Project
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            Player.texture = Content.Load<Texture2D>(@"Textures\DebugPlayer"); // !!!!!!!!!! TEMPORARY!!!!!!!!!
+            DebugMap.Load(Content.Load<Texture2D>(@"Textures\DebugTileMap"), Content.Load<Texture2D>(@"Textures\Tilesets\debugtileset"));
             Database.Load(Content);
             
         }
@@ -67,6 +74,7 @@ namespace TheDayAfter_XNA_Project
         {
             // Allows the game to exit
             InputHandler.Update();
+            Player.Update();
            
         }
 
@@ -76,8 +84,13 @@ namespace TheDayAfter_XNA_Project
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            GraphicsDevice.Clear(Color.White);
             spriteBatch.Begin();
             //Databse.Test();
+           
+           
+            DebugMap.Draw(spriteBatch);
+            Player.Draw(spriteBatch);
             DebugFrame.Draw(spriteBatch);
             spriteBatch.End();
         }
