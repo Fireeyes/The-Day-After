@@ -41,13 +41,7 @@
       <Private>False</Private>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Textures\DebugPlayer.png">
-      <Name>DebugPlayer</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="Textures\Tilesets\hilight.png">
       <Name>hilight</Name>
@@ -109,13 +103,6 @@
     <None Include="Data\World.wif">
       <Name>World</Name>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Textures\DebugTileMap.png">
-      <Name>DebugTileMap</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
