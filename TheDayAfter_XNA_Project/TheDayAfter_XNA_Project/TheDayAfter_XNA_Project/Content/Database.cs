@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.IO.Packaging;
@@ -13,7 +14,7 @@ using System.Reflection;
 using System.Collections;
 
 
-namespace TheDayAfter_XNA_Project.Database
+namespace TheDayAfter_XNA_Project
 {
     static class Database
     {
@@ -22,14 +23,19 @@ namespace TheDayAfter_XNA_Project.Database
         public static Dictionary<string, Skill> SpellList = new Dictionary<string,Skill>();
         public static Dictionary<string, TileMap> TileMapList= new Dictionary<string, TileMap>();
          * end of crap*/
+        public static Dictionary<string, SpriteFont> Fonts = new Dictionary<string, SpriteFont>();
+
         public static Package World;
-        static void Load()
+
+        public static void Load(ContentManager Content)
         {
-            World=Package.Open("Data/World.wif");
+            //World = Package.Open("Data/World.wif");
+            Fonts.Add("debug", Content.Load<SpriteFont>(@"Fonts\debug"));
+
         }
         static void Test()
         {
-            PackagePart test=World.GetPart(PackUriHelper.ResolvePartUri("/test.png",
-       
+            //PackagePart test=World.GetPart(PackUriHelper.ResolvePartUri("/test.png"));
+        }
     }
 }

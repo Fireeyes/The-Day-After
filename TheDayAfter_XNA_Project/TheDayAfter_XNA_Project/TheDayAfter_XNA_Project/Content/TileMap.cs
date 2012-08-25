@@ -10,11 +10,11 @@ using System.Runtime.Serialization;
 using System.Security.Permissions;
 using System.Reflection;
 using System.Collections;
-using TheDayAfter_XNA_Project.Database;
 
 
 
-namespace TheDayAfter_XNA_Project.Database
+
+namespace TheDayAfter_XNA_Project
 {
     //class TileMap
     //{

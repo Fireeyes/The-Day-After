@@ -79,8 +79,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fonts\pericles.spritefont">
-      <Name>pericles</Name>
+    <Compile Include="Fonts\debug.spritefont">
+      <Name>debug</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>

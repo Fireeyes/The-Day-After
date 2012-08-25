@@ -6,14 +6,14 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace TheDayAfter_XNA_Project.Player_Interface
+namespace TheDayAfter_XNA_Project
 {
-    public class InputHandler
+    public static class InputHandler
     {
-        MouseState Ms = Mouse.GetState();
-        KeyboardState ks = Keyboard.GetState();
-        KeyboardState oldks = Keyboard.GetState();
-        int ScrollValue
+        public static MouseState Ms = Mouse.GetState();
+        public static KeyboardState ks = Keyboard.GetState();
+        public static KeyboardState oldks = Keyboard.GetState();
+        public static int ScrollValue
         {
             get
             {
@@ -21,17 +21,29 @@ namespace TheDayAfter_XNA_Project.Player_Interface
             }
             set { }
         }
-        public InputHandler()
+        /*
+        public static InputHandler()
         {
             Ms = Mouse.GetState();
             ks = Keyboard.GetState();
             oldks = Keyboard.GetState();
-        }
-        public Vector2 GetMousePos()
+        }*/
+        public static Vector2 GetMousePos()
         {
             return new Vector2(Ms.X, Ms.Y);
         }
-        public bool IsMouseRClick()    //returns True if Right Mouse Buttoned is pressed
+        public static bool IsMouseRClick()    //returns True if Right Mouse Buttoned is pressed
+        {
+            if (Ms.RightButton == ButtonState.Pressed)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool IsMouseLClick()  //returns True if Left Mouse Buttoned is pressed
         {
             if (Ms.LeftButton == ButtonState.Pressed)
             {
@@ -42,25 +54,14 @@ namespace TheDayAfter_XNA_Project.Player_Interface
                 return false;
             }
         }
-        public bool IsMouseLClick()  //returns True if Left Mouse Buttoned is pressed
-        {
-            if (Ms.LeftButton == ButtonState.Pressed)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        public void Update()
+        public static void Update()
         {
             ScrollValue = Ms.ScrollWheelValue;
             Ms = Mouse.GetState();
             oldks = ks;
             ks = Keyboard.GetState(); 
         }
-        public bool IsKeyPressed(Keys key)
+        public static bool IsKeyPressed(Keys key)
         {
             return ks.IsKeyDown(key);
         }

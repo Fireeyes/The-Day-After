@@ -18,9 +18,9 @@ namespace TheDayAfter_XNA_Project
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        InputHandler Input=new InputHandler();
-        SpriteFont pericles6;
-        
+        //InputHandler Input=new InputHandler(); Input handler should be static (o,O) 
+                                              // i mean.. u dont need more than one, 
+                                              // and u need to see it everywhere                      
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -45,7 +45,7 @@ namespace TheDayAfter_XNA_Project
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            pericles6 = Content.Load<SpriteFont>(@"Fonts\pericles");
+            Database.Load(Content);
             
         }
 
@@ -66,8 +66,7 @@ namespace TheDayAfter_XNA_Project
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if (Input.IsKeyPressed(Keys.Escape) )
-                this.Exit();
+            InputHandler.Update();
            
         }
 
@@ -77,7 +76,10 @@ namespace TheDayAfter_XNA_Project
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            Databse.Test();
+            spriteBatch.Begin();
+            //Databse.Test();
+            DebugFrame.Draw(spriteBatch);
+            spriteBatch.End();
         }
     }
 }

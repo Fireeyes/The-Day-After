@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace TheDayAfter_XNA_Project.Database
+namespace TheDayAfter_XNA_Project
 {
     class TileRow
     {
