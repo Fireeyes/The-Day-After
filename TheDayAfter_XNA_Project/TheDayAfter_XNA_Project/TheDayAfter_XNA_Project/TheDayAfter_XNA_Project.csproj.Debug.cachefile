@@ -7,3 +7,5 @@ Content\Textures\circle.xnb
 Content\Textures\Tilesets\debugtileset.xnb
 Content\Shaders\AmbientLight.xnb
 Content\Fonts\debug.xnb
+Content\Textures\DebugPlayer.xnb
+Content\Textures\DebugTileMap.xnb
