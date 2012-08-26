@@ -12,9 +12,6 @@ using System.Reflection;
 using System.Collections;
 using TheDayAfter_XNA_Project.Player_Interface;
 
-
-
-
 namespace TheDayAfter_XNA_Project
 {
     //class TileMap
@@ -75,13 +72,17 @@ namespace TheDayAfter_XNA_Project
 
                     pixelMap.GetData(0, new Rectangle(i, j, 1, 1), pixel, 0, 1);
 
-                    if (pixel[0] == 4278190080)     // BLACK
+                    /*if (pixel[0] == 4278190080)     // BLACK
                     {
                         currentY.Add(new Tile(1,0));
+                    }*/
+                    if (pixel[0] == 4294901760) // RED
+                    {
+                        currentY.Add(new Tile(1, 1));
                     }
                     else if (pixel[0] == 4278190335) // RED
                     {
-                        currentY.Add(new Tile(1,1)); 
+                        currentY.Add(new Tile(1, 0));
                     }
                 }
                 X.Add(new TileRow(currentY));
