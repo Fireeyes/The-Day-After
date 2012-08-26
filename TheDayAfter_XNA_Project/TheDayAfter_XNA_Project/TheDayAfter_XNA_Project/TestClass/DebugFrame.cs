@@ -16,11 +16,12 @@ namespace TheDayAfter_XNA_Project
                 toggle = !toggle;
             if (toggle)
             {
-                string debugText = "Mouse State:\n Window Position: "
-                    + InputHandler.GetMousePos().ToString() + "\n World Position: "
+                string debugText = "Mouse State:\n     Window Pos: "
+                    + InputHandler.GetMousePos().ToString() + "\n     World Pos: "
                     + (InputHandler.GetMousePos() + Player.position - new Vector2(320)).ToString()
                     // + "\n Tile: " + (int)(((InputHandler.GetMousePos() + Player.position - new Vector2(320)).X) / 64) + " , " + (int)(((InputHandler.GetMousePos() + Player.position - new Vector2(320)).Y) / 64);
-                    + "\n Tile: " + InputHandler.GetTile();
+                    + "\n     Tile: " + InputHandler.GetTile()
+                    +"\nMouse Clicks:";
 
 
                 if (InputHandler.IsMouseLClick())
@@ -32,7 +33,7 @@ namespace TheDayAfter_XNA_Project
 
                 debugText += "\nMouse Scroll: \n     " + InputHandler.ScrollValue;
 
-                debugText += "\nPlayer State: \n     " + Player.position + "\n     " + (float)((int)(Player.rotation*1000))/1000;
+                debugText += "\nPlayer State: \n     " + Player.position + "\n     Rot: " + (float)((int)(Player.rotation*1000))/1000;
                 if (InputHandler.Ms.X >= Player.position.X && InputHandler.Ms.X < Player.position.X + 32 &&
                     InputHandler.Ms.Y >= Player.position.Y && InputHandler.Ms.Y < Player.position.Y + 32)
                 {
