@@ -17,7 +17,7 @@ namespace TheDayAfter_XNA_Project
         {
             get
             {
-                return Ms.ScrollWheelValue - ScrollValue;
+                return Ms.ScrollWheelValue;
             }
             set { }
         }
@@ -46,6 +46,17 @@ namespace TheDayAfter_XNA_Project
         public static bool IsMouseLClick()  //returns True if Left Mouse Buttoned is pressed
         {
             if (Ms.LeftButton == ButtonState.Pressed)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool IsMouseMClick()  //returns True if Middle Mouse Buttoned is pressed
+        {
+            if (Ms.MiddleButton == ButtonState.Pressed)
             {
                 return true;
             }

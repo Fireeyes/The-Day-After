@@ -1,3 +1,4 @@
+Content\Textures\DebugPlayer.xnb
 Content\Textures\Tilesets\hilight.xnb
 Content\Textures\Tilesets\mousemap.xnb
 Content\Textures\Tilesets\tileset.xnb
@@ -5,7 +6,6 @@ Content\Textures\Tilesets\slopemaps.xnb
 Content\Textures\Characters\player.xnb
 Content\Textures\circle.xnb
 Content\Textures\Tilesets\debugtileset.xnb
+Content\Textures\DebugTileMap.xnb
 Content\Shaders\AmbientLight.xnb
 Content\Fonts\debug.xnb
-Content\Textures\DebugPlayer.xnb
-Content\Textures\DebugTileMap.xnb
