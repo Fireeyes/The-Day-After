@@ -79,7 +79,16 @@ namespace TheDayAfter_XNA_Project
 
         public static Vector2 GetTile()
         {
-            return new Vector2((int)(((InputHandler.GetMousePos() + Player.position - new Vector2(320)).X) / 64), (int)(((InputHandler.GetMousePos() + Player.position - new Vector2(320)).Y) / 64));
+            if (((InputHandler.GetMousePos() + Player.position - new Vector2(320)).X) >= 0)
+                if (((InputHandler.GetMousePos() + Player.position - new Vector2(320)).Y) >= 0)
+                    return new Vector2((int)(((InputHandler.GetMousePos() + Player.position - new Vector2(320)).X) / 64), (int)(((InputHandler.GetMousePos() + Player.position - new Vector2(320)).Y) / 64));
+                else
+                    return new Vector2((int)(((InputHandler.GetMousePos() + Player.position - new Vector2(320)).X) / 64), (int)(((InputHandler.GetMousePos() + Player.position - new Vector2(320)).Y) / 64) - 1);
+            else
+                if (((InputHandler.GetMousePos() + Player.position - new Vector2(320)).Y) >= 0)
+                    return new Vector2((int)(((InputHandler.GetMousePos() + Player.position - new Vector2(320)).X) / 64 - 1), (int)(((InputHandler.GetMousePos() + Player.position - new Vector2(320)).Y) / 64));
+                else
+                    return new Vector2((int)(((InputHandler.GetMousePos() + Player.position - new Vector2(320)).X) / 64 - 1), (int)(((InputHandler.GetMousePos() + Player.position - new Vector2(320)).Y) / 64) - 1);
         }
     }
 }
