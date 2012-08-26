@@ -110,7 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Content\Tile.cs" />
-    <Compile Include="Debug\DebugFrame.cs" />
+    <Compile Include="TestClass\DebugFrame.cs" />
     <Compile Include="Lighting\LightSource.cs" />
     <Compile Include="Content\Database.cs" />
     <Compile Include="Core\Enums.cs" />
