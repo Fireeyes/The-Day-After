@@ -62,7 +62,7 @@ namespace TheDayAfter_XNA_Project
     {
         int MaxX = 32; //number of collumns
         int MaxY = 32; //number of rows
-        List<TileRow> X = new List<TileRow>();
+        public List<TileRow> X = new List<TileRow>();
         Texture2D texture;
         public void Load(Texture2D pixelMap, Texture2D tilemap)
         {
@@ -97,7 +97,7 @@ namespace TheDayAfter_XNA_Project
             {   x=0;
                 foreach (Tile tile in row.Y)
                 {
-                    spriteBatch.Draw(texture,new Vector2(y*64,x*64)-Camera.position,new Rectangle(tile.Id*64,0,64,64), Color.White);
+                    spriteBatch.Draw(texture, new Vector2(y * 64, x * 64) - new Vector2(Player.position.X - 320, Player.position.Y - 320), new Rectangle(tile.Id * 64, 0, 64, 64), Color.White);
                     
                     x++;
                 }

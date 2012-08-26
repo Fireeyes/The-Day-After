@@ -76,6 +76,10 @@ namespace TheDayAfter_XNA_Project
         {
             return ks.IsKeyDown(key);
         }
-        
+
+        public static Vector2 GetTile()
+        {
+            return new Vector2((int)(((InputHandler.GetMousePos() + Player.position - new Vector2(320)).X) / 64), (int)(((InputHandler.GetMousePos() + Player.position - new Vector2(320)).Y) / 64));
+        }
     }
 }

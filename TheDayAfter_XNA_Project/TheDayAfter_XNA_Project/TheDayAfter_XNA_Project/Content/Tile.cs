@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace TheDayAfter_XNA_Project
 {
-    class TileRow
+    public class TileRow
     {
         public List<Tile> Y = new List<Tile>();
         public TileRow(List<Tile> input)
@@ -15,7 +15,7 @@ namespace TheDayAfter_XNA_Project
             Y = input;
         }
     }
-    class Tile
+    public class Tile
     {
         public int Environment;
         public int Id;

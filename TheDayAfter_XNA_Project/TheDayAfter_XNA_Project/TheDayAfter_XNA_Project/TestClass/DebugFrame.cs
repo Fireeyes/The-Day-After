@@ -16,7 +16,12 @@ namespace TheDayAfter_XNA_Project
                 toggle = !toggle;
             if (toggle)
             {
-                string debugText = "Mouse State:\n     " + InputHandler.GetMousePos().ToString();
+                string debugText = "Mouse State:\n Window Position: "
+                    + InputHandler.GetMousePos().ToString() + "\n World Position: "
+                    + (InputHandler.GetMousePos() + Player.position - new Vector2(320)).ToString()
+                    // + "\n Tile: " + (int)(((InputHandler.GetMousePos() + Player.position - new Vector2(320)).X) / 64) + " , " + (int)(((InputHandler.GetMousePos() + Player.position - new Vector2(320)).Y) / 64);
+                    + "\n Tile: " + InputHandler.GetTile();
+
 
                 if (InputHandler.IsMouseLClick())
                     debugText += "\n     Left Mouse Click";

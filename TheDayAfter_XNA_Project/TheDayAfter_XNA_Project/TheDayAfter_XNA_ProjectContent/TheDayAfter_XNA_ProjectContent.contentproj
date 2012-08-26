@@ -89,6 +89,7 @@
       <Name>debug</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
+      <SubType>Designer</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +110,11 @@
     <None Include="Data\World.wif">
       <Name>World</Name>
     </None>
+    <Compile Include="Shaders\TestShader.fx">
+      <Name>TestShader</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Textures\DebugTileMap.png">
