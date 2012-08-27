@@ -1,6 +1,6 @@
 float4 PixelShaderFunction(float2 coords: TEXCOORD0) : COLOR0
 {
-    float4 color.r=255;
+    float4 color=255;
 	return color;
 }
 
