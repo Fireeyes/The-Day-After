@@ -63,24 +63,27 @@ namespace TheDayAfter_XNA_Project
         Texture2D texture;
         public void Load(Texture2D pixelMap, Texture2D tilemap)
         {
-            uint[] pixel = new uint[1];
+            byte[] pixel = new byte[4];
             for (int i = 0; i <= MaxX-1; i++)
             {
                 List<Tile> currentY = new List<Tile>();
                 for (int j = 0; j <= MaxY-1; j++)
                 {
 
-                    pixelMap.GetData(0, new Rectangle(i, j, 1, 1), pixel, 0, 1);
-
+                    pixelMap.GetData(0, new Rectangle(i, j, 1, 1), pixel, 0, 4);
+                    //pixel[0] Red
+                    //pixel[1] Green
+                    //pixel[2] Blue
+                    //pixel[3] Alpha
                     /*if (pixel[0] == 4278190080)     // BLACK
                     {
                         currentY.Add(new Tile(1,0));
                     }*/
-                    if (pixel[0] == 4294901760) // RED
+                    if (pixel[0] == 255) // RED
                     {
                         currentY.Add(new Tile(1, 1));
                     }
-                    else if (pixel[0] == 4278190335) // RED
+                    else if (pixel[1] ==255 ) // Green
                     {
                         currentY.Add(new Tile(1, 0));
                     }
