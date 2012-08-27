@@ -24,10 +24,12 @@ namespace TheDayAfter_XNA_Project
         public static Dictionary<string, TileMap> TileMapList= new Dictionary<string, TileMap>();
          * end of crap*/
         public static Dictionary<string, SpriteFont> Fonts = new Dictionary<string, SpriteFont>();
+        public static Dictionary<string, Texture2D> BoxTexture = new Dictionary<string, Texture2D>();
+
         public static void Load(ContentManager Content)
         {
             Fonts.Add("debug", Content.Load<SpriteFont>(@"Fonts\debug"));
-
+            BoxTexture.Add("boxtest", Content.Load<Texture2D>(@"Textures\boxtest"));
         }
        
     }

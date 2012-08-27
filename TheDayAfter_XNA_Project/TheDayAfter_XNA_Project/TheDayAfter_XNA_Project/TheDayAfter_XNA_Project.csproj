@@ -124,6 +124,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Content\TileMap.cs" />
+    <Compile Include="UI\DialogueBox.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

@@ -5,15 +5,21 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-namespace TheDayAfter_XNA_Project
+using TheDayAfter_XNA_Project.UI;
+
+namespace TheDayAfter_XNA_Project.TestClass
 {
     public static class DebugFrame
     {
         static bool toggle = false;
+        static bool BoxTest = false;
         public static void Draw(SpriteBatch spriteBatch)
         {
             if (InputHandler.ks.IsKeyDown(Keys.F1) && InputHandler.oldks.IsKeyUp(Keys.F1))
                 toggle = !toggle;
+            if (InputHandler.ks.IsKeyDown(Keys.F2) && InputHandler.oldks.IsKeyUp(Keys.F2))
+                BoxTest = !BoxTest;
+
             if (toggle)
             {
                 string debugText = "Mouse State:\n     Window Pos: "
@@ -42,6 +48,11 @@ namespace TheDayAfter_XNA_Project
                 spriteBatch.DrawString(Database.Fonts["debug"], debugText, new Vector2(10, 10), Color.White);
             }
 
+            if (BoxTest)
+            {
+                DialogueBox Test = new DialogueBox(new Rectangle(200, 200, 240, 240), Database.Fonts["debug"], Database.BoxTexture["boxtest"], "TEST TEST TEST/nTEST TEST TEST/nTEST TEST TEST/n", 100);
+                Test.Draw(spriteBatch);
+            }
         }
     }
 }

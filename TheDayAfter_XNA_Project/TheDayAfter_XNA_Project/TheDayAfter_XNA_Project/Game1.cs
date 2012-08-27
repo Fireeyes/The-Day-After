@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using TheDayAfter_XNA_Project.Player_Interface;
+using TheDayAfter_XNA_Project.TestClass;
+using TheDayAfter_XNA_Project.UI;
 
 namespace TheDayAfter_XNA_Project
 {
@@ -41,7 +43,6 @@ namespace TheDayAfter_XNA_Project
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
@@ -50,12 +51,11 @@ namespace TheDayAfter_XNA_Project
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            
             Player.texture = Content.Load<Texture2D>(@"Textures\DebugPlayer"); // !!!!!!!!!! TEMPORARY!!!!!!!!!
             DebugMap.Load(Content.Load<Texture2D>(@"Textures\DebugTileMap"), Content.Load<Texture2D>(@"Textures\Tilesets\debugtileset"));
             Database.Load(Content);
             Lighting.Databse.testeffect = Content.Load<Effect>(@"Shaders\TestShader");
-
         }
 
         /// <summary>
