@@ -110,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Content\Tile.cs" />
+    <Compile Include="Lighting\Databse.cs" />
     <Compile Include="TestClass\DebugFrame.cs" />
     <Compile Include="Lighting\LightSource.cs" />
     <Compile Include="Content\Database.cs" />

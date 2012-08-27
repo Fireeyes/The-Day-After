@@ -54,6 +54,7 @@ namespace TheDayAfter_XNA_Project
             Player.texture = Content.Load<Texture2D>(@"Textures\DebugPlayer"); // !!!!!!!!!! TEMPORARY!!!!!!!!!
             DebugMap.Load(Content.Load<Texture2D>(@"Textures\DebugTileMap"), Content.Load<Texture2D>(@"Textures\Tilesets\debugtileset"));
             Database.Load(Content);
+            Lighting.Databse.testeffect = Content.Load<Effect>(@"Shaders\TestShader");
 
         }
 
@@ -88,10 +89,14 @@ namespace TheDayAfter_XNA_Project
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
             //Databse.Test();
-            
+            Lighting.Databse.testeffect.CurrentTechnique = Lighting.Databse.testeffect.Techniques["Technique1"];
             DebugMap.Draw(spriteBatch);
             Player.Draw(spriteBatch);
             DebugFrame.Draw(spriteBatch);
+            foreach (EffectPass pass in Lighting.Databse.testeffect.CurrentTechnique.Passes)
+            {
+                //some other stuff
+            }
             spriteBatch.End();
         }
     }
