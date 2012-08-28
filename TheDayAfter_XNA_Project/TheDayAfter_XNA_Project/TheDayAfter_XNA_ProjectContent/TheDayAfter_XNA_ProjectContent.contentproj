@@ -88,20 +88,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="Textures\boxtest.png">
       <Name>boxtest</Name>
-=======
-    <Compile Include="Textures\DebugPlayerTileMap.png">
-      <Name>DebugPlayerTileMap</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Textures\DebugPlayerTileMap2.png">
-      <Name>DebugPlayerTileMap2</Name>
->>>>>>> origin/Backup
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

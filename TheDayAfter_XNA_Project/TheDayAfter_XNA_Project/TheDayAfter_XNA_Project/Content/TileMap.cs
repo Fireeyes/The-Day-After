@@ -101,7 +101,7 @@ namespace TheDayAfter_XNA_Project
             {   x=0;
                 foreach (Tile tile in row.Y)
                 {
-                    spriteBatch.Draw(texture, new Vector2(y * 64, x * 64) - new Vector2(Player.sprite.X - 320, Player.sprite.Y - 320), new Rectangle(tile.Id * 64, 0, 64, 64), Color.White);
+                    spriteBatch.Draw(texture, new Vector2(y * 64, x * 64) - new Vector2(Player.position.X - 320, Player.position.Y - 320), new Rectangle(tile.Id * 64, 0, 64, 64), Color.White);
                     
                     x++;
                 }
