@@ -51,7 +51,11 @@ namespace TheDayAfter_XNA_Project
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            Player.texture = Content.Load<Texture2D>(@"Textures\DebugPlayer"); // !!!!!!!!!! TEMPORARY!!!!!!!!!
+            Player.sprite =new SpriteAnimation( Content.Load<Texture2D>(@"Textures\DebugPlayerTileMap2")); // !!!!!!!!!! TEMPORARY!!!!!!!!!
+            Player.sprite.AddAnimation("Walk", 0, 0, 64, 64, 8, 0.2f);
+            Player.sprite.AddAnimation("Idle", 64*3, 0, 64, 64, 1, 0.2f);
+            Player.sprite.CurrentAnimation = "Walk";
+            Player.sprite.Position = new Vector2(320, 320);
             DebugMap.Load(Content.Load<Texture2D>(@"Textures\DebugTileMap"), Content.Load<Texture2D>(@"Textures\Tilesets\debugtileset"));
             Database.Load(Content);
             Lighting.Databse.testeffect = Content.Load<Effect>(@"Shaders\TestShader");
@@ -76,7 +80,7 @@ namespace TheDayAfter_XNA_Project
         {
             // Allows the game to exit
             InputHandler.Update();
-            Player.Update();
+            Player.Update(gameTime);
 
         }
 
