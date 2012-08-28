@@ -10,7 +10,6 @@ namespace TheDayAfter_XNA_Project
     public class SpriteAnimation
     {
    
-        /*
         #region Variables
 
         Texture2D texture;
@@ -230,7 +229,6 @@ namespace TheDayAfter_XNA_Project
                 return true;
             else
                 return false;
-        }
-        */        
+        }      
     }
 }
