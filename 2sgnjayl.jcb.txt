@@ -1,0 +1,28 @@
+Revert "Merge remote-tracking branch 'origin/Backup'"
+
+This reverts commit f1f2f634c8e6b0b4dbba8223c33bc6ae15dff8df, reversing
+changes made to c003327474f9ef5cd8e084c537ab73182b3a8e76.
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   TheDayAfter_XNA_Project/TheDayAfter_XNA_Project/TheDayAfter_XNA_Project/Content/TileMap.cs
+#	modified:   TheDayAfter_XNA_Project/TheDayAfter_XNA_Project/TheDayAfter_XNA_Project/Game1.cs
+#	modified:   TheDayAfter_XNA_Project/TheDayAfter_XNA_Project/TheDayAfter_XNA_Project/Player-Interface/Player.cs
+#	deleted:    TheDayAfter_XNA_Project/TheDayAfter_XNA_Project/TheDayAfter_XNA_Project/SpriteAnimation/FrameAnimation.cs
+#	deleted:    TheDayAfter_XNA_Project/TheDayAfter_XNA_Project/TheDayAfter_XNA_Project/SpriteAnimation/SpriteAnimation.cs
+#	modified:   TheDayAfter_XNA_Project/TheDayAfter_XNA_Project/TheDayAfter_XNA_Project/TestClass/DebugFrame.cs
+#	modified:   TheDayAfter_XNA_Project/TheDayAfter_XNA_Project/TheDayAfter_XNA_Project/TheDayAfter_XNA_Project.csproj
+#	modified:   TheDayAfter_XNA_Project/TheDayAfter_XNA_Project/TheDayAfter_XNA_Project/TheDayAfter_XNA_Project.csproj.Debug.cachefile
+#	modified:   TheDayAfter_XNA_Project/TheDayAfter_XNA_Project/TheDayAfter_XNA_ProjectContent/Textures/DebugPlayerTileMap.png
+#	deleted:    TheDayAfter_XNA_Project/TheDayAfter_XNA_Project/TheDayAfter_XNA_ProjectContent/Textures/DebugPlayerTileMap2.png
+#	modified:   TheDayAfter_XNA_Project/TheDayAfter_XNA_Project/TheDayAfter_XNA_ProjectContent/TheDayAfter_XNA_ProjectContent.contentproj
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	4yi1a5pa.ccn.txt
+
