@@ -39,7 +39,7 @@ namespace TheDayAfter_XNA_Project.TestClass
 
                 debugText += "\nMouse Scroll: \n     " + InputHandler.ScrollValue;
 
-                debugText += "\nPlayer State: \n     " + Player.position + "\n     Rot: " + (float)((int)(Player.rotation*1000))/1000;
+                debugText += "\nPlayer State: \n     " + Player.position + "\n     Sin(Rot): " + Math.Sin((float)((int)(Player.sprite.Rotation * 1000)) / 1000) + "\n     Rot: " +((float)((int)(Player.sprite.Rotation * 1000)) / 1000);
                 if (InputHandler.Ms.X >= Player.position.X && InputHandler.Ms.X < Player.position.X + 32 &&
                     InputHandler.Ms.Y >= Player.position.Y && InputHandler.Ms.Y < Player.position.Y + 32)
                 {
