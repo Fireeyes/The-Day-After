@@ -87,19 +87,20 @@ namespace TheDayAfter_XNA_Project
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            spriteBatch.Begin(0, BlendState.Opaque, null, null, null, Lighting.Databse.testeffect);
-            //Databse.Test();
-            Lighting.Databse.testeffect.CurrentTechnique = Lighting.Databse.testeffect.Techniques["Technique1"];
-            //The more you scroll, the redish it becomes
-            EffectParameter red = Lighting.Databse.testeffect.Parameters["red"];
-            red.SetValue( (float)InputHandler.ScrollValue/600 );
-            DebugMap.Draw(spriteBatch);
-            Player.Draw(spriteBatch);
-            
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
             foreach (EffectPass pass in Lighting.Databse.testeffect.CurrentTechnique.Passes)
             {
                 pass.Apply();
             }
+            //Databse.Test();
+            Lighting.Databse.testeffect.CurrentTechnique = Lighting.Databse.testeffect.Techniques["Technique1"];
+            //The more you scroll, the redish it becomes
+            EffectParameter red = Lighting.Databse.testeffect.Parameters["red"];
+            red.SetValue( (float)InputHandler.ScrollValue/6000 );
+            DebugMap.Draw(spriteBatch);
+            Player.Draw(spriteBatch);
+
+            
             DebugFrame.Draw(spriteBatch);
             
             spriteBatch.End();
