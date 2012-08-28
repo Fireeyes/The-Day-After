@@ -231,10 +231,6 @@ namespace TheDayAfter_XNA_Project
             else
                 return false;
         }
-        */
-        public void Update()
-        {
-            Player.position++;
-        }
+        */        
     }
 }
