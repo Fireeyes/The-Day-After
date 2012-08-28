@@ -9,27 +9,52 @@ namespace TheDayAfter_XNA_Project
 {
     public static class Player
     {
-        public static Texture2D texture;
+       
         public static Vector2 position = new Vector2(320,320);
         public static double rotation=0;
+        public static SpriteAnimation sprite;
+        public static string state="Idle";
 
         public static void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, new Vector2(320,320), null, Color.White, (float)rotation, new Vector2(32, 32), 1, SpriteEffects.None, 0);
+            Player.sprite.Draw(spriteBatch);
         }
 
-        internal static void Update()
+        internal static void Update(GameTime gameTime)
         {
-            
-            if (InputHandler.IsKeyPressed(Keys.A)) 
-                position.X -= 5;
-            if (InputHandler.IsKeyPressed(Keys.W)) // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                position.Y -= 5;                   //          !!TEMPORARY!!
-            if (InputHandler.IsKeyPressed(Keys.D)) // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                position.X += 5;
-            if (InputHandler.IsKeyPressed(Keys.S)) 
-                position.Y += 5;
-            rotation = Math.Atan2((InputHandler.GetMousePos().Y - 320) , (InputHandler.GetMousePos().X - 320)) + Math.PI/2;
+            sprite.Update(gameTime);
+
+            #region Player Movement
+            if (InputHandler.IsKeyPressed(Keys.A))
+            {
+                sprite.MoveBy(3 * Math.Sin(Player.sprite.Rotation - Math.PI / 2), -3 * Math.Cos(Player.sprite.Rotation - Math.PI / 2));
+                state = "Walk";
+            }
+            else if (InputHandler.IsKeyPressed(Keys.W)) 
+            {
+                
+                sprite.MoveBy(3 * Math.Cos(Player.sprite.Rotation - Math.PI / 2), 3 * Math.Sin(Player.sprite.Rotation - Math.PI / 2));
+                state = "Walk";
+            }
+            else if (InputHandler.IsKeyPressed(Keys.D)) 
+            {
+                sprite.MoveBy(-3 * Math.Sin(Player.sprite.Rotation - Math.PI / 2), 3 * Math.Cos(Player.sprite.Rotation - Math.PI / 2));
+                state = "Walk";
+            }
+            else if (InputHandler.IsKeyPressed(Keys.S))
+            {
+                sprite.MoveBy(-3 * Math.Cos(Player.sprite.Rotation - Math.PI / 2), -3 * Math.Sin(Player.sprite.Rotation - Math.PI / 2));
+                state = "Walk";
+            }
+            else
+            {
+                state = "Idle";
+            }
+            if (state != sprite.CurrentAnimation)
+                sprite.CurrentAnimation = state;
+
+            sprite.Rotation = (float)(Math.Atan2((InputHandler.GetMousePos().Y - 320) , (InputHandler.GetMousePos().X - 320)) + Math.PI/2);
+            #endregion
         }
     }
 }
