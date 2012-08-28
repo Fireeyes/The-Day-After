@@ -12,7 +12,7 @@ float4 PixelShaderFunction(float2 coords: TEXCOORD0) : COLOR0
 		)<0.2)		
 		{
 		color.rgb+=red;
-		color.r+=red;
+		color.g+=red;
 		}
 		return color;
 }

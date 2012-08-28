@@ -22,6 +22,7 @@ namespace TheDayAfter_XNA_Project
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         TileMap DebugMap = new TileMap();
+        RenderTarget2D final;
         //InputHandler Input=new InputHandler(); Input handler should be static (o,O) 
         // i mean.. u dont need more than one, 
         // and u need to see it everywhere                      
@@ -44,6 +45,7 @@ namespace TheDayAfter_XNA_Project
         {
             // TODO: Add your initialization logic here
             base.Initialize();
+            final = new RenderTarget2D(GraphicsDevice, 640, 640);
         }
 
 
@@ -88,7 +90,7 @@ namespace TheDayAfter_XNA_Project
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
-            RenderTarget2D final=new RenderTarget2D(GraphicsDevice,640,640);
+            
             GraphicsDevice.SetRenderTarget(final);
             DebugMap.Draw(spriteBatch);                 
             Player.Draw(spriteBatch);
