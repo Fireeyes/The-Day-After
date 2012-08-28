@@ -98,7 +98,7 @@ namespace TheDayAfter_XNA_Project
             EffectParameter red = Lighting.Databse.testeffect.Parameters["red"];
             red.SetValue((float)InputHandler.ScrollValue / 6000);
             EffectParameter mouseposdebug = Lighting.Databse.testeffect.Parameters["mousepos"];
-            mouseposdebug.SetValue(new float[2] { InputHandler.GetMousePos().X / 1024, InputHandler.GetMousePos().Y / 1024 });
+            mouseposdebug.SetValue(new float[2] { InputHandler.GetMousePos().X / 640, InputHandler.GetMousePos().Y / 640 });
             GraphicsDevice.SetRenderTarget(null);
             GraphicsDevice.Textures[1] = final;
             foreach (EffectPass pass in Lighting.Databse.testeffect.Techniques[0].Passes)
