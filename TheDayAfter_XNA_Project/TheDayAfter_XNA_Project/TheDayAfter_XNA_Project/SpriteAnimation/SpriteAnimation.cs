@@ -9,6 +9,7 @@ namespace TheDayAfter_XNA_Project
 {
     public class SpriteAnimation
     {
+   
         /*
         #region Variables
 
@@ -231,5 +232,9 @@ namespace TheDayAfter_XNA_Project
                 return false;
         }
         */
+        public void Update()
+        {
+            Player.position++;
+        }
     }
 }
