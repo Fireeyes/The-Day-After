@@ -222,6 +222,13 @@ namespace TheDayAfter_XNA_Project
                                 CurrentFrameAnimation.FrameRectangle, colorTint,
                                 rotation, center, 1f, SpriteEffects.None, 0);
         }
+        public void ShadowDraw(SpriteBatch spriteBatch)
+        {
+            if (isAnimating)
+                spriteBatch.Draw(texture, new Vector2(320, 320),
+                                CurrentFrameAnimation.FrameRectangle, Color.Black,
+                                rotation, center, 1f, SpriteEffects.None, 0);
+        }
 
         public bool IsMoving()
         {

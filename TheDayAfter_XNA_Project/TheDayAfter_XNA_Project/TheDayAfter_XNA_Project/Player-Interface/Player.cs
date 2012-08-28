@@ -19,6 +19,10 @@ namespace TheDayAfter_XNA_Project
         {
             Player.sprite.Draw(spriteBatch);
         }
+        public static void ShadowDraw(SpriteBatch spriteBatch)
+        {
+            Player.sprite.ShadowDraw(spriteBatch);
+        }
 
         internal static void Update(GameTime gameTime)
         {

@@ -10,5 +10,6 @@ namespace TheDayAfter_XNA_Project.Lighting
     static class Databse
     {
         public static Effect testeffect;
+        public static Effect testshadow;
     }
 }

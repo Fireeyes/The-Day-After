@@ -23,6 +23,7 @@ namespace TheDayAfter_XNA_Project
         SpriteBatch spriteBatch;
         TileMap DebugMap = new TileMap();
         RenderTarget2D final;
+        RenderTarget2D shadowmap;
         //InputHandler Input=new InputHandler(); Input handler should be static (o,O) 
         // i mean.. u dont need more than one, 
         // and u need to see it everywhere                      
@@ -46,6 +47,7 @@ namespace TheDayAfter_XNA_Project
             // TODO: Add your initialization logic here
             base.Initialize();
             final = new RenderTarget2D(GraphicsDevice, 640, 640);
+            shadowmap = new RenderTarget2D(GraphicsDevice, 640, 640);
         }
 
 
@@ -62,6 +64,7 @@ namespace TheDayAfter_XNA_Project
             DebugMap.Load(Content.Load<Texture2D>(@"Textures\DebugTileMap"), Content.Load<Texture2D>(@"Textures\Tilesets\debugtileset"));
             Database.Load(Content);
             Lighting.Databse.testeffect = Content.Load<Effect>(@"Shaders\TestShader");
+            Lighting.Databse.testshadow = Content.Load<Effect>(@"Shaders\Shadow");
         }
 
         /// <summary>
@@ -99,22 +102,36 @@ namespace TheDayAfter_XNA_Project
             DebugMap.Draw(spriteBatch);                 
             Player.Draw(spriteBatch);
             DebugFrame.Draw(spriteBatch);
-            #region effect
-            Lighting.Databse.testeffect.CurrentTechnique = Lighting.Databse.testeffect.Techniques["Technique1"];
-            EffectParameter red = Lighting.Databse.testeffect.Parameters["red"];
-            red.SetValue((float)InputHandler.ScrollValue / 6000);
-            EffectParameter mouseposdebug = Lighting.Databse.testeffect.Parameters["mousepos"];
-            mouseposdebug.SetValue(new float[2] { InputHandler.GetMousePos().X / 640, InputHandler.GetMousePos().Y / 640 });
+            //#region effect
+            //Lighting.Databse.testeffect.CurrentTechnique = Lighting.Databse.testeffect.Techniques["Technique1"];
+            //EffectParameter red = Lighting.Databse.testeffect.Parameters["red"];
+            //red.SetValue((float)InputHandler.ScrollValue / 6000);
+            //EffectParameter mouseposdebug = Lighting.Databse.testeffect.Parameters["mousepos"];
+            //mouseposdebug.SetValue(new float[2] { InputHandler.GetMousePos().X / 640, InputHandler.GetMousePos().Y / 640 });
+            //GraphicsDevice.SetRenderTarget(null);
+            //GraphicsDevice.Textures[1] = final;
+            //foreach (EffectPass pass in Lighting.Databse.testeffect.Techniques[0].Passes)
+            //{
+            //    pass.Apply();
+            //}
+
+            //#endregion
+            //GraphicsDevice.SetRenderTarget(shadowmap);
+            //GraphicsDevice.Clear(Color.White);
+            //Player.ShadowDraw(spriteBatch);
+            //GraphicsDevice.SetRenderTarget(null);
+            //GraphicsDevice.Textures[1] = shadowmap;
+            //EffectParameter mouseshadow = Lighting.Databse.testshadow.Parameters["mousepos"];
+            //mouseshadow.SetValue(new float[2] { InputHandler.GetMousePos().X / 640, InputHandler.GetMousePos().Y / 640 });
+            //Lighting.Databse.testshadow.CurrentTechnique = Lighting.Databse.testshadow.Techniques["Technique1"];
+            //foreach (EffectPass pass in Lighting.Databse.testshadow.Techniques[0].Passes)
+            //{
+            //    pass.Apply();
+            //}
+
             GraphicsDevice.SetRenderTarget(null);
-            GraphicsDevice.Textures[1] = final;
-            foreach (EffectPass pass in Lighting.Databse.testeffect.Techniques[0].Passes)
-            {
-                pass.Apply();
-            }
             spriteBatch.Draw(final, new Rectangle(0, 0, 640, 640), Color.White);
-            #endregion
-
-
+            
             spriteBatch.End();
             
         }
