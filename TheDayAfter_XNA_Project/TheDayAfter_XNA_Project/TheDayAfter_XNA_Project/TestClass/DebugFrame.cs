@@ -45,6 +45,7 @@ namespace TheDayAfter_XNA_Project.TestClass
                 {
                     
                 }
+                debugText += "\nMouse-X:" + InputHandler.GetMousePos().X + "\nMouse-Y:" + InputHandler.GetMousePos().Y;
                 spriteBatch.DrawString(Database.Fonts["debug"], debugText, new Vector2(10, 10), Color.White);
             }
 

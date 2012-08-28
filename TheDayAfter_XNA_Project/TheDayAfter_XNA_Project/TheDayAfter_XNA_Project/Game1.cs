@@ -88,23 +88,27 @@ namespace TheDayAfter_XNA_Project
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
-            
-            //Databse.Test();
+            RenderTarget2D final=new RenderTarget2D(GraphicsDevice,640,640);
+            GraphicsDevice.SetRenderTarget(final);
+            DebugMap.Draw(spriteBatch);                 
+            Player.Draw(spriteBatch);
+            DebugFrame.Draw(spriteBatch);
+            #region effect
             Lighting.Databse.testeffect.CurrentTechnique = Lighting.Databse.testeffect.Techniques["Technique1"];
-            //The more you scroll, the redish it becomes
             EffectParameter red = Lighting.Databse.testeffect.Parameters["red"];
-            red.SetValue( (float)InputHandler.ScrollValue/6000 );
+            red.SetValue((float)InputHandler.ScrollValue / 6000);
             EffectParameter mouseposdebug = Lighting.Databse.testeffect.Parameters["mousepos"];
             mouseposdebug.SetValue(new float[2] { InputHandler.GetMousePos().X / 1024, InputHandler.GetMousePos().Y / 1024 });
+            GraphicsDevice.SetRenderTarget(null);
+            GraphicsDevice.Textures[1] = final;
             foreach (EffectPass pass in Lighting.Databse.testeffect.Techniques[0].Passes)
             {
                 pass.Apply();
             }
-            
-            DebugMap.Draw(spriteBatch);                 
-            Player.Draw(spriteBatch);
-            DebugFrame.Draw(spriteBatch);
-            
+            spriteBatch.Draw(final, new Rectangle(0, 0, 640, 640), Color.White);
+            #endregion
+
+
             spriteBatch.End();
             
         }
