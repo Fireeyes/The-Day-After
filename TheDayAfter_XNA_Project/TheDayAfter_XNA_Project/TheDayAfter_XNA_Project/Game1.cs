@@ -63,6 +63,7 @@ namespace TheDayAfter_XNA_Project
             Player.sprite.CurrentAnimation = "Walk";
             DebugMap.Load(Content.Load<Texture2D>(@"Textures\DebugTileMap"), Content.Load<Texture2D>(@"Textures\Tilesets\debugtileset"));
             Database.Load(Content);
+            Lighting.Databse.Load(Content);
             
         }
 
@@ -111,9 +112,10 @@ namespace TheDayAfter_XNA_Project
             GraphicsDevice.SetRenderTarget(null);
             Lighting.Databse.GetShadowMap(shadowmap);
             Lighting.Databse.CalculateShadows(spriteBatch, GraphicsDevice);
+            Lighting.Databse.GenerateShadows(spriteBatch, GraphicsDevice);
             GraphicsDevice.SetRenderTarget(null);
             spriteBatch.Draw(final, new Rectangle(0, 0, 640, 640), Color.White);
-            Lighting.Databse.ApplyShadows(spriteBatch);
+            //Lighting.Databse.ApplyShadows(spriteBatch);
             
             spriteBatch.End();
             

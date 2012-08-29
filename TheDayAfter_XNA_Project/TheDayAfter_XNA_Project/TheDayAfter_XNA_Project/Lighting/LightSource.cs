@@ -49,7 +49,7 @@ namespace TheDayAfter_XNA_Project.Lighting
         public void GenerateShadow(SpriteBatch spriteBatch, Effect effect,GraphicsDevice graphicsDevice)
         {
             graphicsDevice.Textures[1]=area;
-            foreach (EffectPass pass in effect.CurrentTechnique.Passes)
+            foreach (EffectPass pass in effect.Techniques[0].Passes)
             {
                 pass.Apply();
             }
