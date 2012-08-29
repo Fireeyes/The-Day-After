@@ -1,0 +1,19 @@
+﻿<config Version="2">
+  <OutputFolder>$(AppDir)</OutputFolder>
+  <ReportFolderNetFull>$(SystemRoot)\Temp\EQATECProfilerLogs</ReportFolderNetFull>
+  <ReportFolderNetCF>\Temp\EQATECProfilerLogs</ReportFolderNetCF>
+  <AutoSnapshot>Main OnStop ApplicationEnd</AutoSnapshot>
+  <TinyMethodAction>Skip</TinyMethodAction>
+  <ServerControlHost />
+  <ServerControlPort>4515</ServerControlPort>
+  <RuntimeModuleLogLevel>Errors</RuntimeModuleLogLevel>
+  <ExcludeFiles>
+    <ExcludeFile>ICSharpCode.SharpZipLib.dll</ExcludeFile>
+    <ExcludeFile>bin\x86\Debug\TheDayAfter_XNA_Project.exe</ExcludeFile>
+  </ExcludeFiles>
+  <SignActions>
+    <SignAction action="Skip" publickey="ACQAAASAAACUAAAABgIAAAAkAABSU0ExAAQAAAEAAQC5oU6o/J11meDoKhKSojED8CEOL5KKD0ZpY68j//rbpZ3MjJ4m7NEU18C0F55LyTsWVrfuLUpn3XwZkmU+DZzFNPeRS29YOwIuCnqopDD0B5MvmmgG8Pxk1h541a4Bqo+CMxlnGdRNosUKLRz6P3q7dIezVnpPBFaqZmcVTGdJsQ==" usedby="C:\Users\Jiji\Documents\GitHub\The-Day-After\TheDayAfter_XNA_Project\TheDayAfter_XNA_Project\TheDayAfter_XNA_Project\ICSharpCode.SharpZipLib.dll" keyfile="" />
+  </SignActions>
+  <AppType>FullNet</AppType>
+  <InputFolderOK>true</InputFolderOK>
+</config>

@@ -23,6 +23,7 @@ namespace TheDayAfter_XNA_Project.Lighting
         {
             testeffect = Content.Load<Effect>(@"Shaders\TestShader");
             testshadow = Content.Load<Effect>(@"Shaders\Shadow");
+            testeffect.CurrentTechnique = testeffect.Techniques["Technique1"];
         }
         public static void GetShadowMap(RenderTarget2D ShadowCasters)
         {
@@ -37,13 +38,14 @@ namespace TheDayAfter_XNA_Project.Lighting
             }
 
         }
-        public static void AddLight(Vector2 worldpos)
+        public static void AddLight(Vector2 worldpos, GraphicsDevice graphicsDevice)
         {
             LightList.Add(new LightSource(
                 new float[3]{0.5f,0.5f,0.5f},
                 worldpos,
                 LightType.Point,
-                50
+                50,
+                graphicsDevice
                 ));
         }
         public static void Update()
@@ -51,6 +53,20 @@ namespace TheDayAfter_XNA_Project.Lighting
             foreach(LightSource CurrentLight in LightList)
             {
                 CurrentLight.Update();
+            }
+        }
+        public static void GenerateShadows(SpriteBatch spriteBatch,GraphicsDevice graphicsDevice)
+        {
+            foreach (LightSource CurrentLight in LightList)
+            {
+                CurrentLight.GenerateShadow(spriteBatch, testeffect,graphicsDevice); 
+            }
+        }
+        public static void ApplyShadows(SpriteBatch spriteBatch)
+        {
+            foreach (LightSource CurrentLight in LightList)
+            {
+                CurrentLight.ApplyShadows(spriteBatch);
             }
         }
         //Lighting.Databse.testeffect.CurrentTechnique = Lighting.Databse.testeffect.Techniques["Technique1"];

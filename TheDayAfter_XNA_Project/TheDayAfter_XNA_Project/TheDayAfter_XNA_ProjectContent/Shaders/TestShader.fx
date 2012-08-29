@@ -6,15 +6,9 @@ float4 PixelShaderFunction(float2 coords: TEXCOORD0) : COLOR0
 {
     float4 color;
 	color=tex2D(input,coords.xy);
-	if(sqrt(
-		pow((mousepos.x-coords.x),2)+
-		pow((mousepos.y-coords.y),2)
-		)<0.2)		
-		{ 
-		color.rgb+=red;
-		color.g+=red;
-		}
-		return color;
+	color.rgb+=red;
+	color.g+=red;
+	return color;
 }
 
 

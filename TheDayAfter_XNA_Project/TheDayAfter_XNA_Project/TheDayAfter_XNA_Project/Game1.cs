@@ -19,7 +19,7 @@ namespace TheDayAfter_XNA_Project
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphics;
+        public GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         TileMap DebugMap = new TileMap();
         RenderTarget2D final;
@@ -87,7 +87,7 @@ namespace TheDayAfter_XNA_Project
             Player.Update(gameTime);
             if (InputHandler.IsMouseLClick())
             {
-                Lighting.Databse.AddLight(InputHandler.GetMousePos());
+                Lighting.Databse.AddLight(InputHandler.GetMousePos(),GraphicsDevice );
             }
             Lighting.Databse.Update();
 
@@ -111,7 +111,9 @@ namespace TheDayAfter_XNA_Project
             GraphicsDevice.SetRenderTarget(null);
             Lighting.Databse.GetShadowMap(shadowmap);
             Lighting.Databse.CalculateShadows(spriteBatch, GraphicsDevice);
+            GraphicsDevice.SetRenderTarget(null);
             spriteBatch.Draw(final, new Rectangle(0, 0, 640, 640), Color.White);
+            Lighting.Databse.ApplyShadows(spriteBatch);
             
             spriteBatch.End();
             
