@@ -5,7 +5,6 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace TheDayAfter_XNA_Project.Lighting
 {
@@ -14,11 +13,45 @@ namespace TheDayAfter_XNA_Project.Lighting
         static Effect testeffect;
         static Effect testshadow;
         static Texture2D shadowMap;
+        static List<LightSource> LightList=new List<LightSource>();
+        static void Initialise(GraphicsDevice graphicsDevice)
+        {
+            Texture2D shadowMap = new Texture2D(graphicsDevice, 640, 640);
+        }
 
-        static void Load(ContentManager Content)
+        public static void Load(ContentManager Content)
         {
             testeffect = Content.Load<Effect>(@"Shaders\TestShader");
             testshadow = Content.Load<Effect>(@"Shaders\Shadow");
+        }
+        public static void GetShadowMap(RenderTarget2D ShadowCasters)
+        {
+            shadowMap = ShadowCasters;
+        }
+        public static void CalculateShadows(SpriteBatch spritebatch, GraphicsDevice graphicsDevice)
+        {
+            foreach (LightSource CurrentLight in LightList)
+            {
+                //light calculations
+                CurrentLight.SnatchArea(shadowMap, spritebatch, graphicsDevice);//gets the area around it to calculate shadows on
+            }
+
+        }
+        public static void AddLight(Vector2 worldpos)
+        {
+            LightList.Add(new LightSource(
+                new float[3]{0.5f,0.5f,0.5f},
+                worldpos,
+                LightType.Point,
+                50
+                ));
+        }
+        public static void Update()
+        {
+            foreach(LightSource CurrentLight in LightList)
+            {
+                CurrentLight.Update();
+            }
         }
         //Lighting.Databse.testeffect.CurrentTechnique = Lighting.Databse.testeffect.Techniques["Technique1"];
         //EffectParameter red = Lighting.Databse.testeffect.Parameters["red"];

@@ -85,6 +85,11 @@ namespace TheDayAfter_XNA_Project
             // Allows the game to exit
             InputHandler.Update();
             Player.Update(gameTime);
+            if (InputHandler.IsMouseLClick())
+            {
+                Lighting.Databse.AddLight(InputHandler.GetMousePos());
+            }
+            Lighting.Databse.Update();
 
         }
 
@@ -100,7 +105,12 @@ namespace TheDayAfter_XNA_Project
             DebugMap.Draw(spriteBatch);                 
             Player.Draw(spriteBatch);
             DebugFrame.Draw(spriteBatch);
+            GraphicsDevice.SetRenderTarget(shadowmap);
+            GraphicsDevice.Clear(Color.White);
+            Player.ShadowDraw(spriteBatch);
             GraphicsDevice.SetRenderTarget(null);
+            Lighting.Databse.GetShadowMap(shadowmap);
+            Lighting.Databse.CalculateShadows(spriteBatch, GraphicsDevice);
             spriteBatch.Draw(final, new Rectangle(0, 0, 640, 640), Color.White);
             
             spriteBatch.End();
