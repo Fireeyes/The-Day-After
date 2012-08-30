@@ -11,6 +11,7 @@ namespace TheDayAfter_XNA_Project
     public static class InputHandler
     {
         public static MouseState Ms = Mouse.GetState();
+        public static MouseState oldms= Mouse.GetState();
         public static KeyboardState ks = Keyboard.GetState();
         public static KeyboardState oldks = Keyboard.GetState();
         public static int ScrollValue
@@ -34,7 +35,7 @@ namespace TheDayAfter_XNA_Project
         }
         public static bool IsMouseRClick()    //returns True if Right Mouse Buttoned is pressed
         {
-            if (Ms.RightButton == ButtonState.Pressed)
+            if (Ms.RightButton == ButtonState.Pressed && oldms.RightButton != ButtonState.Pressed)
             {
                 return true;
             }
@@ -45,7 +46,7 @@ namespace TheDayAfter_XNA_Project
         }
         public static bool IsMouseLClick()  //returns True if Left Mouse Buttoned is pressed
         {
-            if (Ms.LeftButton == ButtonState.Pressed)
+            if (Ms.LeftButton == ButtonState.Pressed && oldms.LeftButton != ButtonState.Pressed)
             {
                 return true;
             }
@@ -56,7 +57,7 @@ namespace TheDayAfter_XNA_Project
         }
         public static bool IsMouseMClick()  //returns True if Middle Mouse Buttoned is pressed
         {
-            if (Ms.MiddleButton == ButtonState.Pressed)
+            if (Ms.MiddleButton == ButtonState.Pressed && oldms.MiddleButton != ButtonState.Pressed)
             {
                 return true;
             }
@@ -68,6 +69,7 @@ namespace TheDayAfter_XNA_Project
         public static void Update()
         {
             ScrollValue = Ms.ScrollWheelValue;
+            oldms = Ms;
             Ms = Mouse.GetState();
             oldks = ks;
             ks = Keyboard.GetState(); 

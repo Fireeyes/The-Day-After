@@ -24,7 +24,7 @@ namespace TheDayAfter_XNA_Project.TestClass
             {
                 string debugText = "Mouse State:\n     Window Pos: "
                     + InputHandler.GetMousePos().ToString() + "\n     World Pos: "
-                    + (InputHandler.GetMousePos() + Player.position - new Vector2(320)).ToString()
+                    + (InputHandler.GetMousePos() + Player.sprite.position - new Vector2(320)).ToString()
                     // + "\n Tile: " + (int)(((InputHandler.GetMousePos() + Player.position - new Vector2(320)).X) / 64) + " , " + (int)(((InputHandler.GetMousePos() + Player.position - new Vector2(320)).Y) / 64);
                     + "\n     Tile: " + InputHandler.GetTile()
                     +"\nMouse Clicks:";

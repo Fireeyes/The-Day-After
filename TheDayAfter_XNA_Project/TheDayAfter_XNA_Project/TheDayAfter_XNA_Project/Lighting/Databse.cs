@@ -12,39 +12,25 @@ namespace TheDayAfter_XNA_Project.Lighting
     {
         static Effect testeffect;
         static Effect testshadow;
-        static Texture2D shadowMap;
+        static RenderTarget2D shadowMap;
         static List<LightSource> LightList=new List<LightSource>();
-        static void Initialise(GraphicsDevice graphicsDevice)
+        public static void Initialise(GraphicsDevice graphicsDevice)
         {
-            Texture2D shadowMap = new Texture2D(graphicsDevice, 640, 640);
+            shadowMap = new RenderTarget2D(graphicsDevice, 640, 640);
         }
-
         public static void Load(ContentManager Content)
         {
             testeffect = Content.Load<Effect>(@"Shaders\TestShader");
             testshadow = Content.Load<Effect>(@"Shaders\Shadow");
             testeffect.CurrentTechnique = testeffect.Techniques["Technique1"];
-        }
-        public static void GetShadowMap(RenderTarget2D ShadowCasters)
-        {
-            shadowMap = ShadowCasters;
-        }
-        public static void CalculateShadows(SpriteBatch spritebatch, GraphicsDevice graphicsDevice)
-        {
-            foreach (LightSource CurrentLight in LightList)
-            {
-                //light calculations
-                CurrentLight.SnatchArea(shadowMap, spritebatch, graphicsDevice);//gets the area around it to calculate shadows on
-            }
-
-        }
+        }            
         public static void AddLight(Vector2 worldpos, GraphicsDevice graphicsDevice)
         {
             LightList.Add(new LightSource(
                 new float[3]{0.5f,0.5f,0.5f},
                 worldpos,
                 LightType.Point,
-                50,
+                200,
                 graphicsDevice
                 ));
         }
@@ -55,19 +41,23 @@ namespace TheDayAfter_XNA_Project.Lighting
                 CurrentLight.Update();
             }
         }
-        public static void GenerateShadows(SpriteBatch spriteBatch,GraphicsDevice graphicsDevice)
+        public static RenderTarget2D GenerateShadows(RenderTarget2D shadowCaster,SpriteBatch spriteBatch,GraphicsDevice graphicsDevice)
         {
             foreach (LightSource CurrentLight in LightList)
             {
-                CurrentLight.GenerateShadow(spriteBatch, testeffect,graphicsDevice); 
+                CurrentLight.GenerateShadow(shadowCaster,spriteBatch, testeffect,graphicsDevice); 
             }
-        }
-        public static void ApplyShadows(SpriteBatch spriteBatch)
-        {
+            graphicsDevice.SetRenderTarget(shadowMap);
+            spriteBatch.Begin(SpriteSortMode.Immediate,BlendState.NonPremultiplied);
+            //draw every small shadow map to the bigger one
             foreach (LightSource CurrentLight in LightList)
             {
-                CurrentLight.ApplyShadows(spriteBatch);
+                spriteBatch.Draw(CurrentLight.area,
+                    new Rectangle((int)CurrentLight.screenPos.X - CurrentLight.range, (int)CurrentLight.screenPos.Y - CurrentLight.range, 2 * CurrentLight.range, 2 * CurrentLight.range),
+                    Color.White);
             }
+            spriteBatch.End();
+            return shadowMap;
         }
         //Lighting.Databse.testeffect.CurrentTechnique = Lighting.Databse.testeffect.Techniques["Technique1"];
         //EffectParameter red = Lighting.Databse.testeffect.Parameters["red"];

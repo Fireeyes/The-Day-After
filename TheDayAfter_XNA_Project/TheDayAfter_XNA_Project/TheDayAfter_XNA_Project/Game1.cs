@@ -48,6 +48,7 @@ namespace TheDayAfter_XNA_Project
             base.Initialize();
             final = new RenderTarget2D(GraphicsDevice, 640, 640);
             shadowmap = new RenderTarget2D(GraphicsDevice, 640, 640);
+            Lighting.Databse.Initialise(GraphicsDevice);
         }
 
 
@@ -88,7 +89,7 @@ namespace TheDayAfter_XNA_Project
             Player.Update(gameTime);
             if (InputHandler.IsMouseLClick())
             {
-                Lighting.Databse.AddLight(InputHandler.GetMousePos(),GraphicsDevice );
+                Lighting.Databse.AddLight(Player.sprite.position+(InputHandler.GetMousePos()-new Vector2(320)),GraphicsDevice );
             }
             Lighting.Databse.Update();
 
@@ -103,18 +104,22 @@ namespace TheDayAfter_XNA_Project
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
             GraphicsDevice.SetRenderTarget(final);
+            GraphicsDevice.Clear(Color.Black);
             DebugMap.Draw(spriteBatch);                 
             Player.Draw(spriteBatch);
             DebugFrame.Draw(spriteBatch);
+            #region shadowmap
             GraphicsDevice.SetRenderTarget(shadowmap);
             GraphicsDevice.Clear(Color.White);
             Player.ShadowDraw(spriteBatch);
             GraphicsDevice.SetRenderTarget(null);
-            Lighting.Databse.GetShadowMap(shadowmap);
-            Lighting.Databse.CalculateShadows(spriteBatch, GraphicsDevice);
-            Lighting.Databse.GenerateShadows(spriteBatch, GraphicsDevice);
+            spriteBatch.End();
+            shadowmap=Lighting.Databse.GenerateShadows(shadowmap,spriteBatch, GraphicsDevice);
+            #endregion shadowmap
             GraphicsDevice.SetRenderTarget(null);
+            spriteBatch.Begin();
             spriteBatch.Draw(final, new Rectangle(0, 0, 640, 640), Color.White);
+            spriteBatch.Draw(shadowmap, new Rectangle(0, 0, 200, 200), Color.White);
             //Lighting.Databse.ApplyShadows(spriteBatch);
             
             spriteBatch.End();

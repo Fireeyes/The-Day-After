@@ -18,7 +18,7 @@ namespace TheDayAfter_XNA_Project
 
         Color colorTint = Color.White;
 
-        Vector2 position = new Vector2(0, 0);
+        public Vector2 position = new Vector2(0, 0);
 
         Vector2 lastPosition = new Vector2(0, 0);
 
