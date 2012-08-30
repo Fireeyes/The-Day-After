@@ -107,7 +107,7 @@ namespace TheDayAfter_XNA_Project
             GraphicsDevice.Clear(Color.Black);
             DebugMap.Draw(spriteBatch);                 
             Player.Draw(spriteBatch);
-            DebugFrame.Draw(spriteBatch);
+            
             #region shadowmap
             GraphicsDevice.SetRenderTarget(shadowmap);
             GraphicsDevice.Clear(Color.White);
@@ -121,6 +121,7 @@ namespace TheDayAfter_XNA_Project
             spriteBatch.Draw(final, new Rectangle(0, 0, 640, 640), Color.White);
             spriteBatch.Draw(shadowmap, new Rectangle(0, 0, 200, 200), Color.White);
             //Lighting.Databse.ApplyShadows(spriteBatch);
+            DebugFrame.Draw(spriteBatch);
             
             spriteBatch.End();
             

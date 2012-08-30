@@ -13,6 +13,7 @@ namespace TheDayAfter_XNA_Project.TestClass
     {
         static bool toggle = false;
         static bool BoxTest = false;
+        static public string debugText;
         public static void Draw(SpriteBatch spriteBatch)
         {
             if (InputHandler.ks.IsKeyDown(Keys.F1) && InputHandler.oldks.IsKeyUp(Keys.F1))
@@ -22,7 +23,7 @@ namespace TheDayAfter_XNA_Project.TestClass
 
             if (toggle)
             {
-                string debugText = "Mouse State:\n     Window Pos: "
+                  debugText += "Mouse State:\n     Window Pos: "
                     + InputHandler.GetMousePos().ToString() + "\n     World Pos: "
                     + (InputHandler.GetMousePos() + Player.sprite.position - new Vector2(320)).ToString()
                     // + "\n Tile: " + (int)(((InputHandler.GetMousePos() + Player.position - new Vector2(320)).X) / 64) + " , " + (int)(((InputHandler.GetMousePos() + Player.position - new Vector2(320)).Y) / 64);
@@ -46,7 +47,9 @@ namespace TheDayAfter_XNA_Project.TestClass
                     
                 }
                 debugText += "\nMouse-X:" + InputHandler.GetMousePos().X + "\nMouse-Y:" + InputHandler.GetMousePos().Y;
-                spriteBatch.DrawString(Database.Fonts["debug"], debugText, new Vector2(10, 10), Color.White);
+                
+                spriteBatch.DrawString(Database.Fonts["debug"], debugText, new Vector2(10, 10), Color.Red);
+                debugText = string.Empty;
             }
 
             if (BoxTest)

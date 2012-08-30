@@ -30,7 +30,7 @@ namespace TheDayAfter_XNA_Project.Lighting
                 new float[3]{0.5f,0.5f,0.5f},
                 worldpos,
                 LightType.Point,
-                200,
+                100,
                 graphicsDevice
                 ));
         }
@@ -50,10 +50,12 @@ namespace TheDayAfter_XNA_Project.Lighting
             graphicsDevice.SetRenderTarget(shadowMap);
             spriteBatch.Begin(SpriteSortMode.Immediate,BlendState.NonPremultiplied);
             //draw every small shadow map to the bigger one
+            TestClass.DebugFrame.debugText += "Number of lights:" + LightList.Count().ToString()+"\n";
             foreach (LightSource CurrentLight in LightList)
             {
+                
                 spriteBatch.Draw(CurrentLight.area,
-                    new Rectangle((int)CurrentLight.screenPos.X - CurrentLight.range, (int)CurrentLight.screenPos.Y - CurrentLight.range, 2 * CurrentLight.range, 2 * CurrentLight.range),
+                    CurrentLight.RenderArea,
                     Color.White);
             }
             spriteBatch.End();
