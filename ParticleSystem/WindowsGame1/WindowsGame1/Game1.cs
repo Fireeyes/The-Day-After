@@ -22,6 +22,8 @@ namespace WindowsGame1
         SpriteBatch spriteBatch;
         ParticleSystem particleSystem;
         Texture2D ParticleBase;
+        Texture2D Bullet;
+        Texture2D Pixel;
         SpriteFont font;
         float Rotation;
         public Game1()
@@ -45,6 +47,8 @@ namespace WindowsGame1
             // TODO: Add your initialization logic here
             spriteBatch = new SpriteBatch(this.GraphicsDevice);
             ParticleBase = this.Content.Load<Texture2D>("ParticleBase1");
+            Bullet = this.Content.Load<Texture2D>("Bullet");
+            Pixel = this.Content.Load<Texture2D>("Pixel");
             particleSystem = new ParticleSystem(new Vector2(0, 0));
             /*particleSystem.AddEmitter(new Vector2(0.01f, 0.015f),
                                         new Vector2(0, -1), new Vector2(0.1f * MathHelper.Pi, 0.1f * -MathHelper.Pi),
@@ -104,13 +108,23 @@ namespace WindowsGame1
             }
             if (ms.RightButton == ButtonState.Pressed && prevms.RightButton == ButtonState.Released)
             {
-                Bullets.ActiveBullets.AddLast(new Bullet(new Vector2(512, 512), ParticleBase, Rotation, 10));
-                particleSystem.AddEmitter(new Vector2(0.001f, 0.008f),
-                                        new Vector2((float)(-1 * Math.Cos(Rotation - Math.PI / 2)), (float)(-1 * Math.Sin(Rotation - Math.PI / 2))), new Vector2(0.1f * MathHelper.Pi, 0.1f * -MathHelper.Pi),
+                Bullets.ActiveBullets.AddLast(new Bullet(new Vector2(512, 512), Bullet, Rotation, 25));
+                particleSystem.AddEmitter(new Vector2(0.1f, 0.0008f),
+                                        new Vector2((float)(-1 * Math.Cos(Rotation - Math.PI / 2)), (float)(-1 * Math.Sin(Rotation - Math.PI / 2))), new Vector2(1f * MathHelper.Pi, 1f * -MathHelper.Pi),
                                         new Vector2(0.75f, 1f),
                                         new Vector2(20, 30), new Vector2(1, 10),
-                                        Color.White, Color.Red, Color.Red, Color.Red,
-                                        new Vector2(10, 20), new Vector2(20, 300), 1000, new Vector2(512, 512), ParticleBase);
+                                        Color.Red, Color.Red, Color.White, Color.Yellow,
+                                        new Vector2(10, 20), new Vector2(200, 100), 1000, new Vector2(512, 512), ParticleBase);
+            }
+            if (ms.MiddleButton == ButtonState.Pressed && prevms.MiddleButton == ButtonState.Released)
+            {
+                Bullets.ActiveBullets.AddLast(new Bullet(new Vector2(512, 512), Pixel, Rotation, 1));
+                particleSystem.AddEmitter(new Vector2(0.001f, 0.008f),
+                                        new Vector2((float)(-1 * Math.Cos(Rotation - Math.PI / 2)), (float)(-1 * Math.Sin(Rotation - Math.PI / 2))), new Vector2(0.15f * MathHelper.Pi, 0.15f * -MathHelper.Pi),
+                                        new Vector2(0.5f, 0.71f),
+                                        new Vector2(20, 30), new Vector2(1, 10),
+                                        Color.Red, Color.Red, Color.Red, Color.Red,
+                                        new Vector2(300, 400), new Vector2(0,10), 1000, new Vector2(512, 512), ParticleBase,0.1f);
             }
             particleSystem.Update(gameTime.ElapsedGameTime.Milliseconds / 1000f);
             if (Bullets.ActiveBullets.First != null)
@@ -138,7 +152,7 @@ namespace WindowsGame1
         {
             this.GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(SpriteSortMode.Immediate,BlendState.Additive);
-            //Bullets.Draw(spriteBatch);
+            Bullets.Draw(spriteBatch);
             particleSystem.Draw(spriteBatch, 1, Vector2.Zero);
             //spriteBatch.DrawString(font, "Rotation: " + (new Vector2((float)(100 * Math.Cos(Rotation - Math.PI / 2)), (float)(100 * Math.Sin(Rotation - Math.PI / 2)))), new Vector2(50), Color.White);
             spriteBatch.End();

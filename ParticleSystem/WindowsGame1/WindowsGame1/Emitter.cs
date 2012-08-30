@@ -17,6 +17,9 @@ namespace WindowsGame1
         public Texture2D ParticleSprite;        // This is what the particle looks like.
         public Random random;                   // Pointer to a random object passed trough constructor.
 
+        public float LifeLeft;
+        public float InitialLife;
+
         public Vector2 SecPerSpawn;
         public Vector2 SpawnDirection;
         public Vector2 SpawnNoiseAngle;
@@ -60,8 +63,41 @@ namespace WindowsGame1
             this.SecPassed = 0.0f;
         }
 
+        public Emitter(Vector2 SecPerSpawn, Vector2 SpawnDirection, Vector2 SpawnNoiseAngle,
+            Vector2 StartLife, Vector2 StartScale, Vector2 EndScale, Color StartColor1,
+            Color StartColor2, Color EndColor1, Color EndColor2, Vector2 StartSpeed,
+            Vector2 EndSpeed, int Budget, Vector2 RelPosition, Texture2D ParticleSprite,
+            Random random, ParticleSystem parent, float InitialLife)
+        {
+            this.SecPerSpawn = SecPerSpawn;
+            this.SpawnDirection = SpawnDirection;
+            this.SpawnNoiseAngle = SpawnNoiseAngle;
+            this.StartLife = StartLife;
+            this.StartScale = StartScale;
+            this.EndScale = EndScale;
+            this.StartColor1 = StartColor1;
+            this.StartColor2 = StartColor2;
+            this.EndColor1 = EndColor1;
+            this.EndColor2 = EndColor2;
+            this.StartSpeed = StartSpeed;
+            this.EndSpeed = EndSpeed;
+            this.Budget = Budget;
+            this.RelPosition = RelPosition;
+            this.ParticleSprite = ParticleSprite;
+            this.random = random;
+            this.Parent = parent;
+            ActiveParticles = new LinkedList<Particle>();
+            this.NextSpawnIn = MathLib.LinearInterpolate(SecPerSpawn.X, SecPerSpawn.Y, random.NextDouble());
+            this.SecPassed = 0.0f;
+            this.InitialLife = InitialLife;
+        }
+
         public void Update(float dt)
         {
+
+
+
+            LifeLeft += dt;
             SecPassed += dt;
             while (SecPassed > NextSpawnIn)
             {
@@ -72,17 +108,21 @@ namespace WindowsGame1
                     StartDirection.Normalize();
                     Vector2 EndDirection = StartDirection * MathLib.LinearInterpolate(EndSpeed.X, EndSpeed.Y, random.NextDouble());
                     StartDirection *= MathLib.LinearInterpolate(StartSpeed.X, StartSpeed.Y, random.NextDouble());
-                    ActiveParticles.AddLast(new Particle(
-                        RelPosition + Parent.Position,
-                        StartDirection,
-                        EndDirection,
-                        MathLib.LinearInterpolate(StartLife.X, StartLife.Y, random.NextDouble()),
-                        MathLib.LinearInterpolate(StartScale.X, StartScale.Y, random.NextDouble()),
-                        MathLib.LinearInterpolate(EndScale.X, EndScale.Y, random.NextDouble()),
-                        MathLib.LinearInterpolate(StartColor1, StartColor2, random.NextDouble()),
-                        MathLib.LinearInterpolate(EndColor1, EndColor2, random.NextDouble()),
-                        this)
-                    );
+                    if (LifeLeft <= InitialLife || InitialLife == 0)
+                    {
+                        ActiveParticles.AddLast(new Particle(
+                            RelPosition + MathLib.LinearInterpolate(Parent.LastPos, Parent.Position, SecPassed / dt),
+                            StartDirection,
+                            EndDirection,
+                            MathLib.LinearInterpolate(StartLife.X, StartLife.Y, random.NextDouble()),
+                            MathLib.LinearInterpolate(StartScale.X, StartScale.Y, random.NextDouble()),
+                            MathLib.LinearInterpolate(EndScale.X, EndScale.Y, random.NextDouble()),
+                            MathLib.LinearInterpolate(StartColor1, StartColor2, random.NextDouble()),
+                            MathLib.LinearInterpolate(EndColor1, EndColor2, random.NextDouble()),
+                            this)
+                        );
+                        ActiveParticles.Last.Value.Update(SecPassed);
+                    }
                 }
                 SecPassed -= NextSpawnIn;
                 NextSpawnIn = MathLib.LinearInterpolate(SecPerSpawn.X, SecPerSpawn.Y, random.NextDouble());
@@ -105,6 +145,8 @@ namespace WindowsGame1
                     }
                 }
             }
+
+
         }
         public void Draw(SpriteBatch spriteBatch, int Scale, Vector2 Offset)
         {

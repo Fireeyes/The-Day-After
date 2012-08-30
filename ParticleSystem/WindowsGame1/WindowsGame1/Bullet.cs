@@ -27,7 +27,7 @@ namespace WindowsGame1
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture,Position,Color.White);
+            spriteBatch.Draw(Texture,Position,null,Color.White,(float)(Rotation-(float)Math.PI/2),new Vector2(Texture.Width/2,Texture.Height/2),1,SpriteEffects.None,1);
         }
     }
 }
