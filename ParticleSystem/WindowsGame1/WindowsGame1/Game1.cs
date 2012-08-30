@@ -124,7 +124,7 @@ namespace WindowsGame1
                                         new Vector2(0.5f, 0.71f),
                                         new Vector2(20, 30), new Vector2(1, 10),
                                         Color.Red, Color.Red, Color.Red, Color.Red,
-                                        new Vector2(300, 400), new Vector2(0,10), 1000, new Vector2(512, 512), ParticleBase,0.1f);
+                                        new Vector2(300, 400), new Vector2(0, 0), 1000, new Vector2(512, 512), ParticleBase,0.1f);
             }
             particleSystem.Update(gameTime.ElapsedGameTime.Milliseconds / 1000f);
             if (Bullets.ActiveBullets.First != null)
@@ -154,7 +154,7 @@ namespace WindowsGame1
             spriteBatch.Begin(SpriteSortMode.Immediate,BlendState.Additive);
             Bullets.Draw(spriteBatch);
             particleSystem.Draw(spriteBatch, 1, Vector2.Zero);
-            //spriteBatch.DrawString(font, "Rotation: " + (new Vector2((float)(100 * Math.Cos(Rotation - Math.PI / 2)), (float)(100 * Math.Sin(Rotation - Math.PI / 2)))), new Vector2(50), Color.White);
+            spriteBatch.DrawString(font, ("Bullets: " + Bullets.ActiveBullets.Count), new Vector2(50), Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
