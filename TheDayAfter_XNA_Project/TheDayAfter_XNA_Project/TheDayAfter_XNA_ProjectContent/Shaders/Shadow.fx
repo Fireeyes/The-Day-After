@@ -1,12 +1,13 @@
-texture tex;
-sampler input  : register(s1);
+sampler input;
 float2 mousepos; 
 
 float4 PixelShaderFunction(float2 coords: TEXCOORD0) : COLOR0
 {
-    // TODO: add your pixel shader code here.
+	float4 color;
+	color=tex2D(input,coords.xy);
+	return color;
 
-    return float4(1, 0, 0, 1);
+    
 }
 
 technique Technique1

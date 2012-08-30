@@ -45,7 +45,7 @@ namespace TheDayAfter_XNA_Project.Lighting
         {
             foreach (LightSource CurrentLight in LightList)
             {
-                CurrentLight.GenerateShadow(shadowCaster,spriteBatch, testeffect,graphicsDevice); 
+                CurrentLight.GenerateShadow(shadowCaster,spriteBatch, testshadow,graphicsDevice); 
             }
             graphicsDevice.SetRenderTarget(shadowMap);
             spriteBatch.Begin(SpriteSortMode.Immediate,BlendState.NonPremultiplied);
@@ -54,7 +54,7 @@ namespace TheDayAfter_XNA_Project.Lighting
             foreach (LightSource CurrentLight in LightList)
             {
                 
-                spriteBatch.Draw(CurrentLight.area,
+                spriteBatch.Draw(CurrentLight.output1,
                     CurrentLight.RenderArea,
                     Color.White);
             }

@@ -1,12 +1,9 @@
-texture tex;
-sampler input  : tex;
-float red;
-float2 mousepos; 
+sampler input;
 float4 PixelShaderFunction(float2 coords: TEXCOORD0) : COLOR0
 {
     float4 color;
 	color=tex2D(input,coords.xy);
-	color.r=0.9;
+	color.r+=0.5;
 	return color;
 }
 

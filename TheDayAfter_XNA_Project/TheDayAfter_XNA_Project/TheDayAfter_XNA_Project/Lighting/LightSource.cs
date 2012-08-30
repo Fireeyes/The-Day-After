@@ -22,6 +22,7 @@ namespace TheDayAfter_XNA_Project.Lighting
         LightType type;
         public Rectangle RenderArea;
         public RenderTarget2D area;
+        public RenderTarget2D output1;
         public LightSource(float[] RGB, Vector2 worldPos, LightType type, int range, GraphicsDevice graphicsDevice)
         {
             this.RGB = RGB;
@@ -29,6 +30,7 @@ namespace TheDayAfter_XNA_Project.Lighting
             this.type = type;
             this.range = range;
             area = new RenderTarget2D(graphicsDevice, range*2, range*2);
+            output1 = new RenderTarget2D(graphicsDevice, range * 2, range * 2);
             RenderArea.X = 0;
             RenderArea.Y = 0;
             RenderArea.Width = 2*range;
@@ -45,23 +47,24 @@ namespace TheDayAfter_XNA_Project.Lighting
         }
         public void GenerateShadow(Texture2D shadowmap, SpriteBatch spriteBatch, Effect effect, GraphicsDevice graphicsDevice)
         {
+            #region snatch texture
             graphicsDevice.SetRenderTarget(area);
-            spriteBatch.Begin();
-            
+            spriteBatch.Begin(SpriteSortMode.Immediate,BlendState.Opaque);
+            graphicsDevice.Clear(Color.White);
             spriteBatch.Draw(shadowmap,
                 new Rectangle(0, 0, range * 2, range * 2),
                 RenderArea,
                 Color.White);
+            #endregion
+            #region Calculate Deformed
+            graphicsDevice.SetRenderTarget(output1);
+            
+            effect.CurrentTechnique.Passes[0].Apply();
+            spriteBatch.Draw(area, new Rectangle(0, 0, range * 2, range * 2), Color.White);
             spriteBatch.End();
+            #endregion
             graphicsDevice.SetRenderTarget(null);
-            effect.Parameters["tex"].SetValue(area);
-            foreach (EffectPass pass in effect.Techniques[0].Passes)
-            {
-                pass.Apply();
-            }
-            
-            
-            
+                     
         }
     }
         
