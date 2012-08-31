@@ -35,29 +35,26 @@ namespace TheDayAfter_XNA_Project
                 sprite.MoveBy(-3, 0);
                 state = "Walk";
             }
-            else if (InputHandler.IsKeyPressed(Keys.W)) 
+            if (InputHandler.IsKeyPressed(Keys.W)) 
             {
                 
                 //sprite.MoveBy(3 * Math.Cos(Player.sprite.Rotation - Math.PI / 2), 3 * Math.Sin(Player.sprite.Rotation - Math.PI / 2));
                 sprite.MoveBy(0, -3);
                 state = "Walk";
             }
-            else if (InputHandler.IsKeyPressed(Keys.D)) 
+            if (InputHandler.IsKeyPressed(Keys.D)) 
             {
                 //sprite.MoveBy(-3 * Math.Sin(Player.sprite.Rotation - Math.PI / 2), 3 * Math.Cos(Player.sprite.Rotation - Math.PI / 2));
                 sprite.MoveBy(3, 0);
                 state = "Walk";
             }
-            else if (InputHandler.IsKeyPressed(Keys.S))
+            if (InputHandler.IsKeyPressed(Keys.S))
             {
                 //sprite.MoveBy(-3 * Math.Cos(Player.sprite.Rotation - Math.PI / 2), -3 * Math.Sin(Player.sprite.Rotation - Math.PI / 2));
                 sprite.MoveBy(0, 3);
                 state = "Walk";
             }
-            else
-            {
                 state = "Idle";
-            }
             if (state != sprite.CurrentAnimation)
                 sprite.CurrentAnimation = state;
 
