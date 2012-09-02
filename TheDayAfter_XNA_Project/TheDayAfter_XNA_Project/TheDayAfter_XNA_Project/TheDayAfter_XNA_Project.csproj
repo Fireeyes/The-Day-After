@@ -110,7 +110,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Content\Tile.cs" />
+    <Compile Include="Core\MathLib.cs" />
     <Compile Include="Lighting\Databse.cs" />
+    <Compile Include="ParticleSystem\Emitter.cs" />
+    <Compile Include="ParticleSystem\Particle.cs" />
+    <Compile Include="ParticleSystem\ParticleSystem.cs" />
     <Compile Include="SpriteAnimation\FrameAnimation.cs" />
     <Compile Include="SpriteAnimation\SpriteAnimation.cs" />
     <Compile Include="TestClass\DebugFrame.cs" />

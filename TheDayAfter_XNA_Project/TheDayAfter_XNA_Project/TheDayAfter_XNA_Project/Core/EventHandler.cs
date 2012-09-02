@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TheDayAfter_XNA_Project.Player_Interface
+namespace TheDayAfter_XNA_Project
 {
     public static class EventHandler
     {

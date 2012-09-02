@@ -1,4 +1,4 @@
-sampler input;
+sampler inputSampler;
 float4 PixelShaderFunction(float2 coords: TEXCOORD0) : COLOR0
 {
 	//translate u and v into [-1 , 1] domain
@@ -15,13 +15,10 @@ float4 PixelShaderFunction(float2 coords: TEXCOORD0) : COLOR0
 	  float2 newCoords = float2(coords.x, v0);
 
 	  //read for both horizontal and vertical direction and store them in separate channels
-	  float horizontal = tex2D(input, newCoords).r;
-	  float vertical = tex2D(input, newCoords.yx).r;
+	  float horizontal = tex2D(inputSampler, newCoords).r;
+	  float vertical = tex2D(inputSampler, newCoords.yx).r;
       return float4(horizontal,vertical ,0,1);
-
-    
-}
-
+ }
 
 technique Technique1
 {

@@ -30,6 +30,7 @@ namespace TheDayAfter_XNA_Project
         {
             Fonts.Add("debug", Content.Load<SpriteFont>(@"Fonts\debug"));
             BoxTexture.Add("boxtest", Content.Load<Texture2D>(@"Textures\boxtest"));
+            BoxTexture.Add("particleBase", Content.Load<Texture2D>(@"Textures\ParticleBase1"));
         }
        
     }

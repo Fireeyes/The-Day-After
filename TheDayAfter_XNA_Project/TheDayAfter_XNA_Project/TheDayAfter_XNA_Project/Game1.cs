@@ -49,12 +49,14 @@ namespace TheDayAfter_XNA_Project
             final = new RenderTarget2D(GraphicsDevice, 640, 640);
             shadowmap = new RenderTarget2D(GraphicsDevice, 640, 640);
             Lighting.Databse.Initialise(GraphicsDevice);
+            
         }
 
 
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
+            ParticleSystem.Initialize(new Vector2(0, 0));
             spriteBatch = new SpriteBatch(GraphicsDevice);
             
             //Player.texture = Content.Load<Texture2D>(@"Textures\DebugPlayer"); // !!!!!!!!!! TEMPORARY!!!!!!!!!
@@ -64,6 +66,13 @@ namespace TheDayAfter_XNA_Project
             Player.sprite.CurrentAnimation = "Walk";
             DebugMap.Load(Content.Load<Texture2D>(@"Textures\DebugTileMap"), Content.Load<Texture2D>(@"Textures\Tilesets\debugtileset"));
             Database.Load(Content);
+            
+            ParticleSystem.AddEmitter(new Vector2(0.01f, 0.015f),
+                                        new Vector2(0, -1), new Vector2(0.1f * MathHelper.Pi, 0.1f * -MathHelper.Pi),
+                                        new Vector2(0.5f, 0.75f),
+                                        new Vector2(60, 70), new Vector2(15, 15f),
+                                        Color.Orange, Color.Crimson, Color.Orange, Color.Orange,
+                                        new Vector2(400, 500), new Vector2(100, 120), 1000, new Vector2(200,200), Database.BoxTexture["particleBase"]);
             Lighting.Databse.Load(Content);
             
         }
@@ -85,12 +94,18 @@ namespace TheDayAfter_XNA_Project
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
+
             InputHandler.Update();
+
             Player.Update(gameTime);
+
+            ParticleSystem.Update(gameTime.ElapsedGameTime.Milliseconds / 1000f);
+
             if (InputHandler.IsMouseLClick())
             {
                 Lighting.Databse.AddLight(Player.sprite.position+(InputHandler.GetMousePos()-new Vector2(320)),GraphicsDevice );
             }
+
             Lighting.Databse.Update();
 
         }
@@ -102,6 +117,7 @@ namespace TheDayAfter_XNA_Project
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
+            
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
             GraphicsDevice.SetRenderTarget(final);
             GraphicsDevice.Clear(Color.Black);
@@ -122,7 +138,9 @@ namespace TheDayAfter_XNA_Project
             spriteBatch.Draw(shadowmap, new Rectangle(0, 0, 200, 200), Color.White);
             //Lighting.Databse.ApplyShadows(spriteBatch);
             DebugFrame.Draw(spriteBatch);
-            
+            spriteBatch.End();
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive);
+            ParticleSystem.Draw(spriteBatch, 1, -(Player.sprite.position - new Vector2(320)));
             spriteBatch.End();
             
         }
