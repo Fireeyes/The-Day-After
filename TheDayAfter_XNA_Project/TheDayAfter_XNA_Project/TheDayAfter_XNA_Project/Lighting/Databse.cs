@@ -11,7 +11,8 @@ namespace TheDayAfter_XNA_Project.Lighting
     static class Databse
     {
         static Effect testeffect;
-        static Effect testshadow;
+        static Effect distortFX;
+        static Effect fadeFX;
         static RenderTarget2D shadowMap;
         static List<LightSource> LightList=new List<LightSource>();
         public static void Initialise(GraphicsDevice graphicsDevice)
@@ -21,7 +22,8 @@ namespace TheDayAfter_XNA_Project.Lighting
         public static void Load(ContentManager Content)
         {
             testeffect = Content.Load<Effect>(@"Shaders\TestShader");
-            testshadow = Content.Load<Effect>(@"Shaders\Shadow");
+            distortFX = Content.Load<Effect>(@"Shaders\distort");
+            fadeFX = Content.Load<Effect>(@"Shaders\fade");
             testeffect.CurrentTechnique = testeffect.Techniques["Technique1"];
         }            
         public static void AddLight(Vector2 worldpos, GraphicsDevice graphicsDevice)
@@ -45,7 +47,7 @@ namespace TheDayAfter_XNA_Project.Lighting
         {
             foreach (LightSource CurrentLight in LightList)
             {
-                CurrentLight.GenerateShadow(shadowCaster,spriteBatch, testshadow,graphicsDevice); 
+                CurrentLight.GenerateShadow(shadowCaster,spriteBatch, distortFX,graphicsDevice,fadeFX); 
             }
             graphicsDevice.SetRenderTarget(shadowMap);
             spriteBatch.Begin(SpriteSortMode.Immediate,BlendState.NonPremultiplied);
@@ -54,7 +56,7 @@ namespace TheDayAfter_XNA_Project.Lighting
             foreach (LightSource CurrentLight in LightList)
             {
                 
-                spriteBatch.Draw(CurrentLight.output1,
+                spriteBatch.Draw(CurrentLight.output2,
                     CurrentLight.RenderArea,
                     Color.White);
             }

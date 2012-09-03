@@ -79,8 +79,13 @@
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
     </Compile>
-    <Compile Include="Shaders\Shadow.fx">
-      <Name>Shadow</Name>
+    <Compile Include="Shaders\Distort.fx">
+      <Name>Distort</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Shaders\fade.fx">
+      <Name>fade</Name>
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
     </Compile>

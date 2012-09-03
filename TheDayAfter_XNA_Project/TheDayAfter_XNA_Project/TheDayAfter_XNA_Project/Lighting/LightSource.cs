@@ -22,6 +22,7 @@ namespace TheDayAfter_XNA_Project.Lighting
         LightType type;
         public Rectangle RenderArea;
         public RenderTarget2D area;
+        public RenderTarget2D output2;
         public RenderTarget2D output1;
         public LightSource(float[] RGB, Vector2 worldPos, LightType type, int range, GraphicsDevice graphicsDevice)
         {
@@ -31,6 +32,7 @@ namespace TheDayAfter_XNA_Project.Lighting
             this.range = range;
             area = new RenderTarget2D(graphicsDevice, range*2, range*2);
             output1 = new RenderTarget2D(graphicsDevice, range * 2, range * 2);
+            output2 = new RenderTarget2D(graphicsDevice, range * 2, range * 2);
             RenderArea.X = 0;
             RenderArea.Y = 0;
             RenderArea.Width = 2*range;
@@ -45,7 +47,7 @@ namespace TheDayAfter_XNA_Project.Lighting
             RenderArea.X = (int)screenPos.X - range;
             RenderArea.Y = (int)screenPos.Y - range;
         }
-        public void GenerateShadow(Texture2D shadowmap, SpriteBatch spriteBatch, Effect effect, GraphicsDevice graphicsDevice)
+        public void GenerateShadow(Texture2D shadowmap, SpriteBatch spriteBatch, Effect distort, GraphicsDevice graphicsDevice,Effect fade)
         {
             #region snatch texture
             graphicsDevice.SetRenderTarget(area);
@@ -56,11 +58,16 @@ namespace TheDayAfter_XNA_Project.Lighting
                 RenderArea,
                 Color.White);
             #endregion
-            #region Calculate Deformed
+            #region Calculate Fade
             graphicsDevice.SetRenderTarget(output1);
-            
-            effect.CurrentTechnique.Passes[0].Apply();
+            fade.CurrentTechnique.Passes[0].Apply();
             spriteBatch.Draw(area, new Rectangle(0, 0, range * 2, range * 2), Color.White);
+            #endregion
+            #region Calculate Deformed
+            graphicsDevice.SetRenderTarget(output2);
+            
+            distort.CurrentTechnique.Passes[0].Apply();
+            spriteBatch.Draw(output1, new Rectangle(0, 0, range * 2, range * 2), Color.White);
             spriteBatch.End();
             #endregion
             graphicsDevice.SetRenderTarget(null);
