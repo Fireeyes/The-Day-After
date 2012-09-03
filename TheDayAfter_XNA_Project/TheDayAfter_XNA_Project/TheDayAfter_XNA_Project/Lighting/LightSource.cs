@@ -24,6 +24,7 @@ namespace TheDayAfter_XNA_Project.Lighting
         public RenderTarget2D area;
         public RenderTarget2D output2;
         public RenderTarget2D output1;
+        public RenderTarget2D reducedmap;
         public LightSource(float[] RGB, Vector2 worldPos, LightType type, int range, GraphicsDevice graphicsDevice)
         {
             this.RGB = RGB;
@@ -33,6 +34,7 @@ namespace TheDayAfter_XNA_Project.Lighting
             area = new RenderTarget2D(graphicsDevice, range*2, range*2);
             output1 = new RenderTarget2D(graphicsDevice, range * 2, range * 2);
             output2 = new RenderTarget2D(graphicsDevice, range * 2, range * 2);
+            reducedmap = new RenderTarget2D(graphicsDevice, 2, range * 2);
             RenderArea.X = 0;
             RenderArea.Y = 0;
             RenderArea.Width = 2*range;
@@ -47,7 +49,7 @@ namespace TheDayAfter_XNA_Project.Lighting
             RenderArea.X = (int)screenPos.X - range;
             RenderArea.Y = (int)screenPos.Y - range;
         }
-        public void GenerateShadow(Texture2D shadowmap, SpriteBatch spriteBatch, Effect distort, GraphicsDevice graphicsDevice,Effect fade)
+        public void GenerateShadow(Texture2D shadowmap, SpriteBatch spriteBatch, Effect distort, GraphicsDevice graphicsDevice,Effect fade,Effect reduction)
         {
             #region snatch texture
             graphicsDevice.SetRenderTarget(area);
@@ -67,6 +69,13 @@ namespace TheDayAfter_XNA_Project.Lighting
             graphicsDevice.SetRenderTarget(output2);
             
             distort.CurrentTechnique.Passes[0].Apply();
+            spriteBatch.Draw(output1, new Rectangle(0, 0, range * 2, range * 2), Color.White);
+            spriteBatch.End();
+            #endregion
+            #region Horizontal Reduction
+            graphicsDevice.SetRenderTarget(reducedmap);
+            reduction.Parameters["range"].SetValue(range);
+            reduction.CurrentTechnique.Passes[0].Apply();
             spriteBatch.Draw(output1, new Rectangle(0, 0, range * 2, range * 2), Color.White);
             spriteBatch.End();
             #endregion

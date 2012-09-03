@@ -13,6 +13,7 @@ namespace TheDayAfter_XNA_Project.Lighting
         static Effect testeffect;
         static Effect distortFX;
         static Effect fadeFX;
+        static Effect horizontalreductionFX;
         static RenderTarget2D shadowMap;
         static List<LightSource> LightList=new List<LightSource>();
         public static void Initialise(GraphicsDevice graphicsDevice)
@@ -24,6 +25,7 @@ namespace TheDayAfter_XNA_Project.Lighting
             testeffect = Content.Load<Effect>(@"Shaders\TestShader");
             distortFX = Content.Load<Effect>(@"Shaders\distort");
             fadeFX = Content.Load<Effect>(@"Shaders\fade");
+            horizontalreductionFX = Content.Load<Effect>(@"Shaders\reduction");
             testeffect.CurrentTechnique = testeffect.Techniques["Technique1"];
         }            
         public static void AddLight(Vector2 worldpos, GraphicsDevice graphicsDevice)
@@ -47,7 +49,7 @@ namespace TheDayAfter_XNA_Project.Lighting
         {
             foreach (LightSource CurrentLight in LightList)
             {
-                CurrentLight.GenerateShadow(shadowCaster,spriteBatch, distortFX,graphicsDevice,fadeFX); 
+                CurrentLight.GenerateShadow(shadowCaster,spriteBatch, distortFX,graphicsDevice,fadeFX,horizontalreductionFX); 
             }
             graphicsDevice.SetRenderTarget(shadowMap);
             spriteBatch.Begin(SpriteSortMode.Immediate,BlendState.NonPremultiplied);
