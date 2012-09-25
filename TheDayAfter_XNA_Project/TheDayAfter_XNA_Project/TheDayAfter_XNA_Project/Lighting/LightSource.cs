@@ -70,7 +70,7 @@ namespace TheDayAfter_XNA_Project.Lighting
             spriteBatch.Draw(output[1], new Rectangle(0, 0, range * 2, range * 2), Color.White);
             #endregion
             #region Horizontal Reduction
-            int order=0; 
+            int order = 0;
             //represents the order of the power of 2 used in the reduction
             //first pass of the lap makes the pixel the min of itself and the pixel near it (2^0)
             //second pass makes the pixel the min of itself and the one two pixels to the right
@@ -79,11 +79,13 @@ namespace TheDayAfter_XNA_Project.Lighting
             reduction.CurrentTechnique.Passes[0].Apply();
             while (Math.Pow(2, order) < range)
             {
-                graphicsDevice.SetRenderTarget(output[(order+1)%2]);
-                reduction.Parameters["order"].SetValue((int)Math.Pow(2, order));
-                spriteBatch.Draw(output[order%2], new Rectangle(0, 0, range * 2, range * 2), Color.White);
+                graphicsDevice.SetRenderTarget(output[(order + 1) % 2]);
+                reduction.Parameters["order"].SetValue((float)(Math.Pow(2, order))/(range*2));
+                spriteBatch.Draw(output[order % 2], new Rectangle(0, 0, range * 2, range * 2), Color.White);
+                reduction.CurrentTechnique.Passes[0].Apply();
                 order++;
             }
+            
             
             #endregion
             spriteBatch.End();
