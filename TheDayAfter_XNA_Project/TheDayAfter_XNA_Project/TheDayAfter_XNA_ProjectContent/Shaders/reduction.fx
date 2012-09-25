@@ -1,30 +1,21 @@
 sampler input;
-int range;
+float range;
+float order;
 float4 PixelShaderFunction(float2 coords: TEXCOORD0) : COLOR0
 {
-	int x;
-	int y;
-	float2 minim={1,1};
-	float2 current;
-	if(coords.x==0)
-	{
-		for(x=0;x<=range/2;x=x+1)
+	float4 current=tex2D(input,coords);
+	float4 cmpr;
+	if(coords.x<0.5)
 		{
-			coords.x=x;
-			current=tex2D(input,coords);
-			minim=min(minim,current);		
+			cmpr=tex2D(input,float2( clamp( (coords.x+(order/2*range)), 0,0.5),coords.y));
 		}
-	}
-	if(coords.x==1)
-	{
-		for(x=range/2;x<=range;x++)
+	if(coords.x>0.5)
 		{
-			coords.x=x;
-			current=tex2D(input,coords);
-			minim=min(minim,current);		
+			cmpr=tex2D(input,float2(clamp( (coords.x-(float)(order/2*range)),0.5,1),coords.y));
 		}
-	}
-    return float4(minim,0,1);
+		//(float)(order/2*range)
+    return float4(min(current.r,cmpr.r),min(current.g,cmpr.g),0,1);
+	
  }
 
 technique Technique1
@@ -34,6 +25,6 @@ technique Technique1
         // TODO: set renderstates here.
 
        
-        PixelShader = compile ps_3_0 PixelShaderFunction();
+        PixelShader = compile ps_2_0 PixelShaderFunction();
     }
 }

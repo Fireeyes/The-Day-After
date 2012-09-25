@@ -58,7 +58,7 @@ namespace TheDayAfter_XNA_Project.Lighting
             foreach (LightSource CurrentLight in LightList)
             {
                 
-                spriteBatch.Draw(CurrentLight.output2,
+                spriteBatch.Draw(CurrentLight.output[1],
                     CurrentLight.RenderArea,
                     Color.White);
             }
