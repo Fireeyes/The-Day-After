@@ -85,7 +85,7 @@ namespace TheDayAfter_XNA_Project.Lighting
                 reduction.CurrentTechnique.Passes[0].Apply();
                 order++;
             }
-            
+            graphicsDevice.SetRenderTarget(output[(order + 1) % 2]);
             
             #endregion
             spriteBatch.End();
