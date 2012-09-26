@@ -19,10 +19,11 @@ namespace TheDayAfter_XNA_Project.Lighting
         Vector2 screenPos;
         float[] RGB = new float[3];
         int range;
+        public double distance;
         LightType type;
         public Rectangle RenderArea;
         public RenderTarget2D area;
-        public RenderTarget2D[] output=new RenderTarget2D[2];
+        RenderTarget2D[] output=new RenderTarget2D[2];
         public LightSource(float[] RGB, Vector2 worldPos, LightType type, int range, GraphicsDevice graphicsDevice)
         {
             this.RGB = RGB;
@@ -44,10 +45,11 @@ namespace TheDayAfter_XNA_Project.Lighting
             screenPos = worldPos - Player.sprite.position;
             screenPos.X = screenPos.X + 320;
             screenPos.Y = screenPos.Y + 320;
+            distance = Math.Sqrt((Math.Pow((screenPos.X - 320), 2) + Math.Pow((screenPos.X - 320), 2)));
             RenderArea.X = (int)screenPos.X - range;
             RenderArea.Y = (int)screenPos.Y - range;
         }
-        public void GenerateShadow(Texture2D shadowmap, SpriteBatch spriteBatch, Effect distort, GraphicsDevice graphicsDevice,Effect fade,Effect reduction, Effect resolveFX)
+        public void GenerateShadow(Texture2D shadowmap, SpriteBatch spriteBatch,GraphicsDevice graphicsDevice,List<Effect>EffectList)
         {
             #region Snatch texture
             graphicsDevice.SetRenderTarget(area);
@@ -56,41 +58,42 @@ namespace TheDayAfter_XNA_Project.Lighting
             spriteBatch.Draw(shadowmap,
                 new Rectangle(0, 0, range * 2, range * 2),
                 RenderArea,
-                Color.White);
+                Color.White);                   
             #endregion
             #region Calculate Fade
             graphicsDevice.SetRenderTarget(output[1]);
-            fade.CurrentTechnique.Passes[0].Apply();
+            EffectList[1].CurrentTechnique.Passes[0].Apply();
             spriteBatch.Draw(area, new Rectangle(0, 0, range * 2, range * 2), Color.White);
             #endregion
-            #region Calculate Deformed
+            #region Calculate Distorted
             graphicsDevice.SetRenderTarget(output[0]);
-            
-            distort.CurrentTechnique.Passes[0].Apply();
+       
+            EffectList[0].CurrentTechnique.Passes[0].Apply();
             spriteBatch.Draw(output[1], new Rectangle(0, 0, range * 2, range * 2), Color.White);
             #endregion
+            
             #region Horizontal Reduction
             int order = 0;
             //represents the order of the power of 2 used in the reduction
             //first pass of the lap makes the pixel the min of itself and the pixel near it (2^0)
             //second pass makes the pixel the min of itself and the one two pixels to the right
             // and so on until 2^order>range
-            reduction.Parameters["range"].SetValue(range);
-            reduction.CurrentTechnique.Passes[0].Apply();
+            EffectList[2].Parameters["range"].SetValue(range);
+            EffectList[2].CurrentTechnique.Passes[0].Apply();
             while (Math.Pow(2, order) < range)
             {
                 graphicsDevice.SetRenderTarget(output[(order + 1) % 2]);
-                reduction.Parameters["order"].SetValue((float)(Math.Pow(2, order))/(range*2));
+                EffectList[2].Parameters["order"].SetValue((float)(Math.Pow(2, order)) / (range * 2));
                 spriteBatch.Draw(output[order % 2], new Rectangle(0, 0, range * 2, range * 2), Color.White);
-                reduction.CurrentTechnique.Passes[0].Apply();
+                EffectList[2].CurrentTechnique.Passes[0].Apply();
                 order++;
             }    
             #endregion
             #region Shadow Resolve
             graphicsDevice.SetRenderTarget(area);
-            resolveFX.CurrentTechnique.Passes[0].Apply();
+            EffectList[3].CurrentTechnique.Passes[0].Apply();
             spriteBatch.Draw(output[order  % 2], new Rectangle(0, 0, range * 2, range * 2), Color.White);
-            #endregion region Shadow Resolve
+            #endregion region Shadow Resolve 
             spriteBatch.End();
             graphicsDevice.SetRenderTarget(null);
                      

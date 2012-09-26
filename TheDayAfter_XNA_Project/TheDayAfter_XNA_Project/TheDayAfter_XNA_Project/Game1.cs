@@ -133,9 +133,12 @@ namespace TheDayAfter_XNA_Project
             shadowmap=Lighting.Databse.GenerateShadows(shadowmap,spriteBatch, GraphicsDevice);
             #endregion shadowmap
             GraphicsDevice.SetRenderTarget(null);
+            GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
+            GraphicsDevice.Clear(Color.Black);
             spriteBatch.Draw(final, new Rectangle(0, 0, 640, 640), Color.White);
             spriteBatch.Draw(shadowmap, new Rectangle(0, 0, 640, 640), Color.White);
+
             //Lighting.Databse.ApplyShadows(spriteBatch);
             DebugFrame.Draw(spriteBatch);
             spriteBatch.End();
