@@ -5,7 +5,6 @@ float4 PixelShaderFunction(float2 coords: TEXCOORD0) : COLOR0
 {
 	float4 current=tex2D(input,coords);
 	float4 cmpr;
-	if(coords.x<0.5)
 		{
 			cmpr=tex2D(input,float2( clamp( (coords.x+order), 0,0.5),coords.y));
 		}

@@ -47,7 +47,7 @@ namespace TheDayAfter_XNA_Project.Lighting
             RenderArea.X = (int)screenPos.X - range;
             RenderArea.Y = (int)screenPos.Y - range;
         }
-        public void GenerateShadow(Texture2D shadowmap, SpriteBatch spriteBatch, Effect distort, GraphicsDevice graphicsDevice,Effect fade,Effect reduction)
+        public void GenerateShadow(Texture2D shadowmap, SpriteBatch spriteBatch, Effect distort, GraphicsDevice graphicsDevice,Effect fade,Effect reduction, Effect resolveFX)
         {
             #region Snatch texture
             graphicsDevice.SetRenderTarget(area);
@@ -84,10 +84,13 @@ namespace TheDayAfter_XNA_Project.Lighting
                 spriteBatch.Draw(output[order % 2], new Rectangle(0, 0, range * 2, range * 2), Color.White);
                 reduction.CurrentTechnique.Passes[0].Apply();
                 order++;
-            }
-            graphicsDevice.SetRenderTarget(output[(order + 1) % 2]);
-            
+            }    
             #endregion
+            #region Shadow Resolve
+            graphicsDevice.SetRenderTarget(area);
+            resolveFX.CurrentTechnique.Passes[0].Apply();
+            spriteBatch.Draw(output[order  % 2], new Rectangle(0, 0, range * 2, range * 2), Color.White);
+            #endregion region Shadow Resolve
             spriteBatch.End();
             graphicsDevice.SetRenderTarget(null);
                      

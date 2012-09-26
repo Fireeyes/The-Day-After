@@ -14,6 +14,7 @@ namespace TheDayAfter_XNA_Project.Lighting
         static Effect distortFX;
         static Effect fadeFX;
         static Effect horizontalreductionFX;
+        static Effect resolveFX;
         static RenderTarget2D shadowMap;
         static List<LightSource> LightList=new List<LightSource>();
         public static void Initialise(GraphicsDevice graphicsDevice)
@@ -26,6 +27,7 @@ namespace TheDayAfter_XNA_Project.Lighting
             distortFX = Content.Load<Effect>(@"Shaders\distort");
             fadeFX = Content.Load<Effect>(@"Shaders\fade");
             horizontalreductionFX = Content.Load<Effect>(@"Shaders\reduction");
+            resolveFX = Content.Load<Effect>(@"Shaders\resolve");
             testeffect.CurrentTechnique = testeffect.Techniques["Technique1"];
         }            
         public static void AddLight(Vector2 worldpos, GraphicsDevice graphicsDevice)
@@ -34,7 +36,7 @@ namespace TheDayAfter_XNA_Project.Lighting
                 new float[3]{0.5f,0.5f,0.5f},
                 worldpos,
                 LightType.Point,
-                100,
+                300,
                 graphicsDevice
                 ));
         }
@@ -49,7 +51,7 @@ namespace TheDayAfter_XNA_Project.Lighting
         {
             foreach (LightSource CurrentLight in LightList)
             {
-                CurrentLight.GenerateShadow(shadowCaster,spriteBatch, distortFX,graphicsDevice,fadeFX,horizontalreductionFX); 
+                CurrentLight.GenerateShadow(shadowCaster,spriteBatch, distortFX,graphicsDevice,fadeFX,horizontalreductionFX,resolveFX); 
             }
             graphicsDevice.SetRenderTarget(shadowMap);
             spriteBatch.Begin(SpriteSortMode.Immediate,BlendState.NonPremultiplied);
@@ -58,7 +60,7 @@ namespace TheDayAfter_XNA_Project.Lighting
             foreach (LightSource CurrentLight in LightList)
             {
                 
-                spriteBatch.Draw(CurrentLight.output[1],
+                spriteBatch.Draw(CurrentLight.area,
                     CurrentLight.RenderArea,
                     Color.White);
             }
