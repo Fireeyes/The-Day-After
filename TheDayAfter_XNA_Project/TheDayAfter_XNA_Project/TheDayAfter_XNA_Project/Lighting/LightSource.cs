@@ -41,7 +41,7 @@ namespace TheDayAfter_XNA_Project.Lighting
         }
         public void Update()
         {
-            screenPos = worldPos- Player.sprite.position;
+            screenPos = worldPos - Player.sprite.position;
             screenPos.X = screenPos.X + 320;
             screenPos.Y = screenPos.Y + 320;
             RenderArea.X = (int)screenPos.X - range;

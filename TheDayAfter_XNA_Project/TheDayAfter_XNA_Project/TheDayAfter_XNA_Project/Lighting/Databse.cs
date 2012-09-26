@@ -54,6 +54,7 @@ namespace TheDayAfter_XNA_Project.Lighting
                 CurrentLight.GenerateShadow(shadowCaster,spriteBatch, distortFX,graphicsDevice,fadeFX,horizontalreductionFX,resolveFX); 
             }
             graphicsDevice.SetRenderTarget(shadowMap);
+            graphicsDevice.Clear(Color.Transparent);
             spriteBatch.Begin(SpriteSortMode.Immediate,BlendState.NonPremultiplied);
             //draw every small shadow map to the bigger one
             TestClass.DebugFrame.debugText += "Number of lights:" + LightList.Count().ToString()+"\n";
