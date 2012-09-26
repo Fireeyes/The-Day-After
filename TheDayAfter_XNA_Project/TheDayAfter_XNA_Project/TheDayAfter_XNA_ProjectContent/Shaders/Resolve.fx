@@ -6,21 +6,24 @@
 	float rangey=coords.y*2-1;
 	if(abs(rangex)<abs(rangey))
 		{
-			vertical=0;
+			vertical=1;
 		}
 	float distance=sqrt( pow((coords.x-0.5f),2)+pow((coords.y-0.5f),2));
-	rangey=rangey/(abs(rangex));
-	rangey=(rangey+1)/2;
+	
 	float2 comparecoords;
 	//horizontal info was stored in the Red component
 	if(vertical==0)
 		{
+			rangey=rangey/(abs(rangex));
+			rangey=(rangey+1)/2;
 			comparecoords=float2( coords.x<0.5f?0:1,rangey);
 			
 		}
 	else
 		{
-			comparecoords=float2( coords.y>0.5f?0:1,rangey);
+			rangey=rangex/(abs(rangey));
+			rangey=(rangey+1)/2;
+			comparecoords=float2( coords.y<0.5f?0:1, rangey);
 			//comparecoords = float2(coords.y,v0);
 		}	
 	float4 comparecolor=tex2D(input,comparecoords);
@@ -28,7 +31,16 @@
 		{
 			comparecolor.r=comparecolor.g;
 		}
-	if(distance*2<comparecolor.r)
+	float distanceC;
+	if(vertical==0)
+	{
+		distanceC=comparecolor.r;
+	}
+	else
+	{
+		distanceC=comparecolor.g;
+	}
+	if(distance*2<distanceC)
 	{
 		return float4(1,1,1,1);	
 	}
