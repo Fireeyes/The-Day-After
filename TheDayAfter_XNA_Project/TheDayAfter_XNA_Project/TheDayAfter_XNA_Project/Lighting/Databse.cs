@@ -17,6 +17,7 @@ namespace TheDayAfter_XNA_Project.Lighting
         static Effect resolveFX;
         static RenderTarget2D shadowMap;
         static List<LightSource> LightList=new List<LightSource>();
+        static int queue_order;
         public static void Initialise(GraphicsDevice graphicsDevice)
         {
             shadowMap = new RenderTarget2D(graphicsDevice, 640, 640);
@@ -36,7 +37,7 @@ namespace TheDayAfter_XNA_Project.Lighting
                 new float[3]{0.5f,0.5f,0.5f},
                 worldpos,
                 LightType.Point,
-                200,
+                300,
                 graphicsDevice
                 ));
         }
@@ -46,12 +47,15 @@ namespace TheDayAfter_XNA_Project.Lighting
             {
                 CurrentLight.Update();
             }
+            
         }
         public static RenderTarget2D GenerateShadows(RenderTarget2D shadowCaster,SpriteBatch spriteBatch,GraphicsDevice graphicsDevice)
         {
             foreach (LightSource CurrentLight in LightList)
             {
-                CurrentLight.GenerateShadow(shadowCaster,spriteBatch, distortFX,graphicsDevice,fadeFX,horizontalreductionFX,resolveFX); 
+                
+                CurrentLight.GenerateShadow(shadowCaster, spriteBatch, distortFX, graphicsDevice, fadeFX, horizontalreductionFX, resolveFX);
+                
             }
             graphicsDevice.SetRenderTarget(shadowMap);
             graphicsDevice.Clear(Color.Transparent);
@@ -61,9 +65,10 @@ namespace TheDayAfter_XNA_Project.Lighting
             foreach (LightSource CurrentLight in LightList)
             {
                 
-                spriteBatch.Draw(CurrentLight.area,
+                    spriteBatch.Draw(CurrentLight.area,
                     CurrentLight.RenderArea,
                     Color.White);
+                
             }
             spriteBatch.End();
             return shadowMap;

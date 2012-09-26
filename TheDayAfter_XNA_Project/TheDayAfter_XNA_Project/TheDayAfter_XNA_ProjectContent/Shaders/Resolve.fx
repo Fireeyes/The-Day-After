@@ -40,14 +40,14 @@
 	{
 		distanceC=comparecolor.g;
 	}
-	float alpha=( (distance*2)>1?0:0.5);
+	float alpha=( (distance*2)>1?0:0.7);
 	if(distance*2<distanceC)
 	{
-		return float4(1,1,1,alpha);	
+		return float4(1,0,0,alpha-distance*1.7);	
 	}
 	else
 	{
-		return float4(0,0,0,alpha);
+		return float4(0,0,0,alpha-distance);
 	}
 }
 
