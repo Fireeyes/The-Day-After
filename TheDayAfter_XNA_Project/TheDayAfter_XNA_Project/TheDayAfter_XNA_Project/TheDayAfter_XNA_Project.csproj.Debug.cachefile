@@ -2,12 +2,12 @@ Content\Textures\DebugPlayer.xnb
 Content\Textures\Tilesets\debugtileset.xnb
 Content\Textures\DebugTileMap.xnb
 Content\Textures\boxtest.xnb
-Content\Shaders\AmbientLight.xnb
-Content\Shaders\TestShader.xnb
-Content\Fonts\debug.xnb
 Content\Textures\DebugPlayerTileMap.xnb
 Content\Textures\ParticleBase1.xnb
+Content\Shaders\AmbientLight.xnb
+Content\Shaders\TestShader.xnb
 Content\Shaders\Distort.xnb
 Content\Shaders\fade.xnb
 Content\Shaders\reduction.xnb
 Content\Shaders\Resolve.xnb
+Content\Fonts\debug.xnb

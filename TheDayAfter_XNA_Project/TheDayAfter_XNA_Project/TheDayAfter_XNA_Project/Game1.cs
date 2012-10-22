@@ -140,10 +140,11 @@ namespace TheDayAfter_XNA_Project
             spriteBatch.Draw(shadowmap, new Rectangle(0, 0, 640, 640), Color.White);
 
             //Lighting.Databse.ApplyShadows(spriteBatch);
-            DebugFrame.Draw(spriteBatch);
+            
             spriteBatch.End();
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive);
             ParticleSystem.Draw(spriteBatch, 1, -(Player.sprite.position- new Vector2(320)));
+            DebugFrame.Draw(spriteBatch);
             spriteBatch.End();
             
         }

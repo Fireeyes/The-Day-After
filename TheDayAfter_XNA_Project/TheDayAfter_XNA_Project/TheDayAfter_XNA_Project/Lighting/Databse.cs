@@ -30,7 +30,7 @@ namespace TheDayAfter_XNA_Project.Lighting
                 new float[3]{0.5f,0.5f,0.5f},
                 worldpos,
                 LightType.Point,
-                300,
+                1024,
                 graphicsDevice
                 ));
         }

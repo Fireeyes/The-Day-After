@@ -1,9 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheDayAfter_XNA_Project", "TheDayAfter_XNA_Project\TheDayAfter_XNA_Project\TheDayAfter_XNA_Project.csproj", "{ACAD7968-F99D-4AA3-A859-ED35DE0F1121}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "TheDayAfter_XNA_ProjectContent", "TheDayAfter_XNA_Project\TheDayAfter_XNA_ProjectContent\TheDayAfter_XNA_ProjectContent.contentproj", "{ABBB0A61-05D7-4495-B0E4-01D2D943133B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheDayAfter_XNA_ProjectContent", "TheDayAfter_XNA_Project\TheDayAfter_XNA_ProjectContent\TheDayAfter_XNA_ProjectContent.contentproj", "{ABBB0A61-05D7-4495-B0E4-01D2D943133B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6EC4FF31-8E9B-45D2-BDD3-35E3F5F62F4D}"
+	ProjectSection(SolutionItems) = preProject
+		Performance1.psess = Performance1.psess
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

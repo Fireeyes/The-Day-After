@@ -23,7 +23,7 @@ namespace TheDayAfter_XNA_Project.Lighting
         LightType type;
         public Rectangle RenderArea;
         public RenderTarget2D area;
-        RenderTarget2D[] output=new RenderTarget2D[2];
+        List<RenderTarget2D> output=new List<RenderTarget2D>();
         public LightSource(float[] RGB, Vector2 worldPos, LightType type, int range, GraphicsDevice graphicsDevice)
         {
             this.RGB = RGB;
@@ -31,8 +31,14 @@ namespace TheDayAfter_XNA_Project.Lighting
             this.type = type;
             this.range = range;
             area = new RenderTarget2D(graphicsDevice, range*2, range*2);
-            output[1] = new RenderTarget2D(graphicsDevice, range * 2, range * 2);
-            output[0] = new RenderTarget2D(graphicsDevice, range * 2, range * 2);
+            output.Add(new RenderTarget2D(graphicsDevice, range * 2, range * 2));
+            output.Add(new RenderTarget2D(graphicsDevice, range * 2, range * 2));
+            int order = 2;
+            while(Math.Pow(2,order)<=range*2)
+            {
+                output.Add(new RenderTarget2D(graphicsDevice, (range * 2) / (int)Math.Pow(2, order), (range * 2)));
+                order++;
+            }
 
             RenderArea.X = 0;
             RenderArea.Y = 0;
@@ -80,11 +86,11 @@ namespace TheDayAfter_XNA_Project.Lighting
             // and so on until 2^order>range
             EffectList[2].Parameters["range"].SetValue(range);
             EffectList[2].CurrentTechnique.Passes[0].Apply();
-            while (Math.Pow(2, order) < range)
+            while (Math.Pow(2, order) <= range)
             {
-                graphicsDevice.SetRenderTarget(output[(order + 1) % 2]);
+                graphicsDevice.SetRenderTarget(output[(order + 1) ]);
                 EffectList[2].Parameters["order"].SetValue((float)(Math.Pow(2, order)) / (range * 2));
-                spriteBatch.Draw(output[order % 2], new Rectangle(0, 0, range * 2, range * 2), Color.White);
+                spriteBatch.Draw(output[order ], new Rectangle(0, 0, range * 2, range * 2), Color.White);
                 EffectList[2].CurrentTechnique.Passes[0].Apply();
                 order++;
             }    
@@ -92,7 +98,7 @@ namespace TheDayAfter_XNA_Project.Lighting
             #region Shadow Resolve
             graphicsDevice.SetRenderTarget(area);
             EffectList[3].CurrentTechnique.Passes[0].Apply();
-            spriteBatch.Draw(output[order  % 2], new Rectangle(0, 0, range * 2, range * 2), Color.White);
+            spriteBatch.Draw(output[order  ], new Rectangle(0, 0, range * 2, range * 2), Color.White);
             #endregion region Shadow Resolve 
             spriteBatch.End();
             graphicsDevice.SetRenderTarget(null);
